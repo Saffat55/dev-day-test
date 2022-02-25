@@ -1,0 +1,227 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content"
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "search": {
+      "title": "Search for products on our site",
+      "placeholder": "Search our store",
+      "submit": "Search",
+      "heading": {
+        "one": "Search result",
+        "other": "Search results"
+      },
+      "results_with_count": {
+        "one": "{{ count }} result for \"{{ terms }}\"",
+        "other": "{{ count }} results for \"{{ terms }}\""
+      },
+      "no_results_html": "Please try a different search term or go back to the <a href=\"\/\">homepage<\/a>."
+    },
+    "newsletter_form": {
+      "email_placeholder": "Email address",
+      "submit": "Subscribe",
+      "success_message": "Thank you for subscribing!"
+    }
+  },
+  "blogs": {
+    "article": {
+      "author_on_date_html": "Posted by {{ author }} on {{ date }}",
+      "comment_meta_html": "{{ author }} on {{ date }}",
+      "read_more": "Read more"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Shopping Cart",
+      "remove": "Remove",
+      "subtotal": "Subtotal",
+      "shipping_at_checkout": "Shipping & taxes calculated at checkout",
+      "checkout": "Check Out",
+      "empty": "Your cart is currently empty.",
+      "continue_browsing_html": "Continue browsing <a href=\"\/collections\/all\">here<\/a>."
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "Sorry, there are no products in this collection",
+      "link_title": "Browse our {{ title }} collection"
+    },
+    "sorting": {
+      "title": "Sort by",
+      "featured": "Featured",
+      "best_selling": "Best Selling",
+      "az": "Alphabetically, A-Z",
+      "za": "Alphabetically, Z-A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "date_descending": "Date, new to old",
+      "date_ascending": "Date, old to new"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "message": "Message",
+      "send": "Send",
+      "post_success": "Thanks for contacting us. We'll get back to you as soon as possible."
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "My Account",
+      "details": "Account Details",
+      "view_addresses": "View Addresses",
+      "view_order_history": "View Order History",
+      "order_history": "Order history"
+    },
+    "activate_account": {
+      "title": "Activate Account",
+      "subtext": "Create your password to activate your account.",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Activate Account",
+      "cancel": "Decline Invitation"
+    },
+    "addresses": {
+      "title": "Your Addresses",
+      "default": "Default",
+      "add_new": "Add a New Address",
+      "edit_address": "Edit address",
+      "first_name": "First Name",
+      "last_name": "Last Name",
+      "company": "Company",
+      "address1": "Address1",
+      "address2": "Address2",
+      "city": "City",
+      "country": "Country",
+      "province": "Province",
+      "zip": "Postal\/Zip Code",
+      "phone": "Phone",
+      "set_default": "Set as default address",
+      "add": "Add Address",
+      "update": "Update Address",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "delete_confirm": "Are you sure you wish to delete this address?",
+      "submit": "Submit",
+      "none": "You have no addresses"
+    },
+    "login": {
+      "title": "Login",
+      "email": "Email",
+      "password": "Password",
+      "forgot_password": "Forgot Your Password?",
+      "sign_in": "Sign In",
+      "login": "Login",
+      "cancel": "Return to Store",
+      "guest_title": "Continue as a guest",
+      "guest_continue": "Continue",
+      "create_account": "Create Account"
+    },
+    "orders": {
+      "title": "Order History",
+      "order_number": "Order",
+      "date": "Date",
+      "status": "Status:",
+      "payment_status": "Payment Status",
+      "fulfillment_status": "Fulfillment Status",
+      "total": "Total",
+      "none": "You haven't placed any orders yet.",
+      "details": "View Details",
+      "track": "Track"
+    },
+    "order": {
+      "title": "Order {{ name }}",
+      "date": "Placed on {{ date }}",
+      "cancelled": "Order Cancelled on {{ date }}",
+      "cancelled_reason": "Reason: {{ reason }}",
+      "billing_address": "Billing Address",
+      "payment_status": "Payment Status",
+      "shipping_address": "Shipping Address",
+      "fulfillment_status": "Fulfillment Status",
+      "discount": "Discount",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "product": "Product",
+      "sku": "SKU",
+      "price": "Price",
+      "quantity": "Quantity",
+      "total": "Total",
+      "fulfilled_at": "Date fulfilled",
+      "track_shipment": "Track shipment",
+      "tracking_url": "Tracking link",
+      "tracking_company": "Carrier",
+      "tracking_number": "Tracking number",
+      "subtotal": "Subtotal"
+    },
+    "recover_password": {
+      "title": "Forgot Your Password?",
+      "title_html": "Forgot <br>your password?",
+      "email": "Email",
+      "submit": "Reset Password",
+      "cancel": "Cancel",
+      "subtext": "Enter your email and we will send you a link to reset your password.",
+      "success": "We've sent you an email with a link to update your password."
+    },
+    "reset_password": {
+      "title": "Reset account password",
+      "subtext": "Enter a new password for {{ email }}",
+      "password": "Password",
+      "password_confirm": "Confirm Password",
+      "submit": "Reset Password"
+    },
+    "register": {
+      "title": "Create your account",
+      "first_name": "Name",
+      "last_name": "Last Name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create Account",
+      "sign_in": "Sign In",
+      "sign_in_message": "Already have an account?"
+    }
+  },
+  "layout": {
+    "customer": {
+      "account": "Account",
+      "log_out": "Log out",
+      "log_in": "Log in",
+      "create_account": "Create account"
+    }
+  },
+  "products": {
+    "product": {
+      "sold_out": "Sold Out",
+      "limited_stock": "Only a few left!",
+      "no_stock": "Out of Stock!",
+      "unavailable": "Unavailable",
+      "selection_unavailable": "Selected options not available",
+      "add_to_cart": "Add to Cart",
+      "quantity_limit_reached": "Only {{ limit }} available"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title": "Here's your {{ value }} gift card for {{ shop }}!",
+      "subtext": "Here's your gift card!",
+      "disabled": "Disabled",
+      "expired": "Expired on {{ expiry }}",
+      "active": "Expires on {{ expiry }}",
+      "redeem": "Use this code at checkout to redeem your gift card",
+      "shop_link": "Start shopping",
+      "print": "Print",
+      "remaining_html": "{{ balance }} left",
+      "add_to_apple_wallet": "Add to Apple Wallet"
+    }
+  },
+  "date_formats": {
+    "month_day_year": "%d %B, %Y"
+  }
+}

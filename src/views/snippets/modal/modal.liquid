@@ -1,0 +1,47 @@
+{% comment %}
+  PARAMETERS
+  content : content to appear in modal
+  id : unique identifier to link triggers to modals
+  no_wrapper : removes wrapper if [true] (optional)
+  overlay_view : makes small view if [true] (optional)
+  overlay_view_title : title for small view (optional)
+  center_content : centers content in window if [true] / not compatible with overlay_view (optional)
+  full_height_content : makes content holder full height if [true] / not compatible with overlay_view (optional)
+  autoplay_video : autoplay first video in modal (optional)
+
+  USAGE
+  {% capture modal_content %}
+    <p>Hi I'm Content</p>
+  {% endcapture %}
+  {% render 'modal' with content: modal_content, id: unique-id %}
+  <button data-open-modal="modal-id">Open Modal</button>
+{% endcomment %}
+
+<div class="modal hidden modal--{{ id }}{% if overlay_view == true %} overlay-view{% endif %}" data-modal="{{ id }}" {% if autoplay_video == true %}data-autoplay-video{% endif %}>
+  <button class="modal__close{% if overlay_view == true %} overlay{% endif %}" data-close-modal aria-label="Close Popup">{% render 'icon-close' %}</button>
+  <div class="modal__content{% if center_content == true %} center-content{% endif %}{% if full_height_content == true %} full-height{% endif %}">
+    {% unless no_wrapper == true %}
+      <div class="container">
+    {% endunless %}
+
+    {% if overlay_view == true %}
+      <div class="modal__title">
+        {% if overlay_view_title != blank %}
+          <h3>{{ overlay_view_title }}</h3>
+        {% endif %}
+
+        <button data-close-modal aria-label="Close Popup">{% render 'icon-close' %}</button>
+      </div>
+
+      <div class="modal__body">
+        {{ content }}
+      </div>
+    {% else %}
+      {{ content }}
+    {% endif %}
+
+    {% unless no_wrapper == true %}
+      </div>
+    {% endunless %}
+  </div>
+</div>

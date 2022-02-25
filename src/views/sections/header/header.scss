@@ -1,0 +1,40 @@
+// Helpers
+@import '~@styles/helpers/variables';
+@import '~@styles/helpers/mixins';
+@import '~@styles/helpers/functions';
+
+/* ============================================================================
+  Header
+============================================================================== */
+
+.site-header {
+  position: relative;
+  padding: $gutter 0;
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  button,
+  a {
+    display: inline-block;
+    line-height: 0;
+    vertical-align: middle;
+  }
+}
+
+.site-header__logo {
+  max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+
+  @include media-query($min, $large) {
+    margin: 0;
+    text-align: left;
+  }
+
+  a,
+  img {
+    display: block;
+  }
+}

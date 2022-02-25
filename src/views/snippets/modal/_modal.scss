@@ -1,0 +1,138 @@
+/* ============================================================================
+  Popup Screen
+============================================================================== */
+
+.modal {
+  visibility: visible;
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: translateY(0);
+  transition: all $transition-primary;
+  opacity: 100%;
+  background-color: $color-white;
+  pointer-events: all;
+
+  &__content {
+    width: 100%;
+    max-height: 100%;
+    padding: 24px 0;
+    overflow: auto;
+    opacity: 100%;
+
+    @include media-query($min, $medium) {
+      padding: 48px 0;
+    }
+
+    &.center-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+
+    &.full-height {
+      height: 100%;
+    }
+  }
+
+  &.hidden {
+    visibility: hidden;
+    opacity: 0%;
+    pointer-events: none;
+  }
+
+  &.overlay-view {
+    height: auto;
+    max-height: 100vh;
+    padding: $wrapper-padding;
+    overflow: auto;
+    background-color: $color-modal-background;
+
+    @include media-query($min, $medium) {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      height: 100vh;
+      padding: $wrapper-padding;
+    }
+
+    .modal__content {
+      display: block;
+      max-width: $medium;
+      max-height: initial;
+      margin: 0 auto;
+      padding: 0;
+      overflow: initial;
+      border-radius: $border-radius;
+      background-color: $color-white;
+    }
+
+    .modal__content.center-content {
+      display: block;
+      position: absolute;
+      top: calc(50% - 32px);
+      left: 50%;
+      height: auto;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__close {
+    position: absolute;
+    z-index: 10;
+    top: 24px;
+    right: 24px;
+
+    @include media-query($min, $medium) {
+      top: 48px;
+      right: 48px;
+    }
+
+    &.overlay {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      right: auto;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      svg {
+        display: none;
+      }
+    }
+  }
+
+  &__title {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: $wrapper-padding 70px $wrapper-padding 0;
+    border-bottom: 1px solid $color-primary;
+
+    h3 {
+      margin: 0;
+    }
+
+    button {
+      display: flex;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__body {
+    position: relative;
+    width: 100%;
+    padding: $wrapper-padding 0;
+  }
+}
