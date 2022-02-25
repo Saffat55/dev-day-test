@@ -1,0 +1,44 @@
+// Helpers
+@import '~@styles/helpers/variables';
+@import '~@styles/helpers/mixins';
+@import '~@styles/helpers/functions';
+
+/* ============================================================================
+  Mobile Navigation
+============================================================================== */
+
+.mobile-nav {
+  margin: 0;
+  list-style-type: none;
+
+  button {
+    float: right;
+    line-height: 1;
+
+    svg path {
+      fill: $color-drawer-text;
+    }
+  }
+}
+
+.mobile-nav__link {
+  position: relative;
+  display: block;
+  padding: 14px 0;
+  border-bottom: 1px solid $color-border;
+  margin: 0;
+  line-height: 1;
+
+  &.mobile-nav__link--last {
+    margin-bottom: 25px;
+  }
+}
+
+.mobile-nav__submenu {
+  margin: 20px 0 0 20px;
+  list-style-type: none;
+
+  li {
+    border-bottom: none;
+  }
+}
