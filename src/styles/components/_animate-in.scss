@@ -1,0 +1,45 @@
+/* ============================================================================
+  Styles for animate-in.js
+============================================================================== */
+
+*[data-animate-in] {
+  position: relative;
+  transform: translateY(32px);
+  transition: all 0.8s ease;
+  opacity: 0%;
+
+  &.visible {
+    transform: translateY(0);
+    opacity: 100%;
+  }
+}
+
+// Alternate animate-in effects
+
+*[data-animate-in='opacity-only'] {
+  transform: translateY(0);
+}
+
+*[data-animate-in='top-in'] {
+  transform: translateY(-32px);
+
+  &.visible {
+    transform: translateY(0);
+  }
+}
+
+*[data-animate-in='right-in'] {
+  transform: translateX(32px);
+
+  &.visible {
+    transform: translateX(0);
+  }
+}
+
+*[data-animate-in='left-in'] {
+  transform: translateX(-32px);
+
+  &.visible {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,135 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import '~bootstrap/scss/functions';
+
+// 2. Custom Bootstrap Variables
+$enable-grid-classes: true;
+$enable-cssgrid: true;
+
+// Grid columns
+// Set the number of columns and specify the width of the gutters.
+$grid-columns: 12;
+$grid-gutter-width: $gutter;
+$grid-row-columns: 6;
+$gutters: $gutter;
+
+// Container padding
+$container-padding-x: $grid-gutter-width * 0.5;
+
+// scss-docs-start grid-breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: $small,
+  md: $medium,
+  lg: $large,
+  xl: $xlarge,
+  xxl: $xxlarge,
+);
+
+// scss-docs-start container-max-widths
+$container-max-widths: (
+  sm: $small,
+  md: $medium,
+  lg: $large,
+  xl: $xlarge,
+  xxl: $xxlarge,
+);
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/root';
+
+// 4. Include any optional Bootstrap CSS as needed
+@import '~bootstrap/scss/containers';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/utilities';
+
+// Utilities
+$utilities: map-merge(
+  $utilities,
+  (
+    'align': null,
+    'float': null,
+    'opacity': null,
+    'overflow': null,
+    'shadow': null,
+    'position': null,
+    'top': null,
+    'bottom': null,
+    'start': null,
+    'end': null,
+    'translate-middle': null,
+    'border': null,
+    'border-top': null,
+    'border-end': null,
+    'border-start': null,
+    'border-bottom': null,
+    'border-color': null,
+    'border-width': null,
+    'width': null,
+    'max-width': null,
+    'viewport-width': null,
+    'min-viewport-width': null,
+    'height': null,
+    'max-height': null,
+    'viewport-height': null,
+    'min-viewport-height': null,
+    'flex-grow': null,
+    'flex-shrink': null,
+    'flex-wrap': null,
+    'gap': null,
+    'align-content': null,
+    'margin': null,
+    'margin-x': null,
+    'margin-y': null,
+    'margin-top': null,
+    'margin-end': null,
+    'margin-start': null,
+    'margin-bottom': null,
+    'negative-margin': null,
+    'negative-margin-x': null,
+    'negative-margin-y': null,
+    'negative-margin-top': null,
+    'negative-margin-end': null,
+    'negative-margin-bottom': null,
+    'negative-margin-start': null,
+    'padding': null,
+    'padding-x': null,
+    'padding-y': null,
+    'padding-top': null,
+    'padding-end': null,
+    'padding-bottom': null,
+    'padding-start': null,
+    'font-family': null,
+    'font-size': null,
+    'font-weight': null,
+    'line-height': null,
+    'text-decoration': null,
+    'text-transform': null,
+    'white-space': null,
+    'word-wrap': null,
+    'color': null,
+    'text-opacity': null,
+    'background-color': null,
+    'gradient': null,
+    'user-select': null,
+    'rounded': null,
+    'rounded-top': null,
+    'rounded-start': null,
+    'rounded-end': null,
+    'visibility': null,
+    'text-align':
+      map-merge(
+        map-get($utilities, 'text-align'),
+        (
+          values: (
+            left: left,
+            right: right,
+            center: center,
+          ),
+        )
+      ),
+  )
+);
+
+@import '~bootstrap/scss/utilities/api';
