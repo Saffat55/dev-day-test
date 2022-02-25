@@ -1,0 +1,14 @@
+<form action="{{ routes.search_url }}" method="get" class="search-bar form-inline text-center" role="search">
+  <input type="hidden"
+        name="type"
+        value="product">
+
+  <input type="search"
+        name="q"
+        value="{{ search.terms | escape }}"
+        placeholder="{{ 'general.search.placeholder' | t }}">
+
+  <div>
+    <button type="submit" class="btn">{{ 'general.search.submit' | t }}</button>
+  </div>
+</form>

@@ -1,0 +1,15 @@
+.sprite {
+  user-select: none;
+
+  img {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: auto;
+    max-width: initial;
+    height: auto;
+    pointer-events: none;
+    transform-origin: 0 0;
+  }
+}

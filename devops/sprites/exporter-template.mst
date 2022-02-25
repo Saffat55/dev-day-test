@@ -1,0 +1,27 @@
+{
+  "frames": [
+    {{#rects}}
+    {
+      "filename": "{{{name}}}",
+      "frame": {
+        "x": {{frame.x}},
+        "y": {{frame.y}},
+        "w": {{frame.w}},
+        "h": {{frame.h}}
+      },
+      "sourceSize": {
+        "w": {{sourceSize.w}},
+        "h": {{sourceSize.h}}
+      }
+    }{{^last}},{{/last}}
+    {{/rects}}
+  ],
+  "meta": {
+    "image": "{{^config.base64Export}}{{config.imageName}}{{/config.base64Export}}{{#config.base64Export}}{{{config.base64Prefix}}}{{{config.imageData}}}{{/config.base64Export}}",
+    "size": {
+      "w": {{config.imageWidth}},
+      "h": {{config.imageHeight}}
+    },
+    "scale": {{config.scale}}
+  }
+}

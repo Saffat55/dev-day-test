@@ -1,0 +1,87 @@
+<div class="drawer drawer--left" role="region" aria-label="Menu" data-drawer-left>
+  <div class="drawer__outside">
+    <div class="drawer__inside">
+      <div class="drawer__header">
+        <button type="button" class="drawer__close" aria-label="Close Menu" data-drawer-close>
+          {% render 'icon-close' %}
+        </button>
+      </div>
+
+      <ul class="mobile-nav">
+        {% for link in linklists[section.settings.menu].links %}
+          {% assign child_list_handle = link.title | handleize %}
+          {% if linklists[child_list_handle].links != blank %}
+            <li class="mobile-nav__link {% if forloop.last %}mobile-nav__link--last{% endif %}">
+              <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+
+              <button type="button" class="mobile-nav__submenu-open" aria-label="Open {{ link.title }} Submenu" data-mobile-nav-submenu-open>
+                {% render 'icon-plus' %}
+              </button>
+
+              <button type="button" class="mobile-nav__submenu-close hide" aria-label="Close {{ link.title }} Submenu" data-mobile-nav-submenu-close>
+                {% render 'icon-minus' %}
+              </button>
+
+              <ul class="mobile-nav__submenu hide" data-mobile-nav-submenu>
+                {% for childlink in linklists[child_list_handle].links %}
+                  <li>
+                    <a href="{{ childlink.url }}" title="{{ childlink.title }}">{{ childlink.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <li class="mobile-nav__link {% if forloop.last %}mobile-nav__link--last{% endif %}">
+              <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <li class="mobile-nav__menu-sublink">
+              <a href="{{ routes.account_url }}" title="{{ 'layout.customer.account' | t }}">{{ 'layout.customer.account' | t }}</a>
+            </li>
+
+            <li class="mobile-nav__menu-sublink">
+              <a href="{{ routes.account_logout_url }}" title="{{ 'layout.customer.log_out' | t }}">{{ 'layout.customer.log_out' | t }}</a>
+            </li>
+          {% else %}
+            <li class="mobile-nav__menu-sublink">
+              <a href="{{ routes.account_login_url }}" title="{{ 'layout.customer.log_in' | t }}">{{ 'layout.customer.log_in' | t }}</a>
+            </li>
+
+            <li class="mobile-nav__menu-sublink">
+              <a href="{{ routes.account_register_url }}" title="{{ 'layout.customer.create_account' | t }}">{{ 'layout.customer.create_account' | t }}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+
+        {% for link in linklists[section.settings.sublinks].links %}
+          <li class="mobile-nav__menu-sublink">
+            <a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Mobile Nav",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "sublinks",
+        "label": "Sublinks"
+      }
+    ]
+  }
+{% endschema %}

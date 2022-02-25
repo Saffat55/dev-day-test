@@ -1,0 +1,27 @@
+body {
+  padding-top: 100px;
+  padding-bottom: 200px;
+  background-attachment: fixed;
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+}
+
+.sprite-section {
+  padding: 300px 0;
+  text-align: center;
+}
+
+.test-sprite {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+}
+
+.click-sprite {
+  cursor: pointer;
+}

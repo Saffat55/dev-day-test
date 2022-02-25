@@ -1,0 +1,8 @@
+node_modules
+dist
+
+*.liquid
+*.js
+*.ts
+*.json
+*.log
