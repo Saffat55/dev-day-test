@@ -1,0 +1,49 @@
+{% comment %}
+    It creates a style tag containing "background-image" properties to load the correct image depending on the resolution
+    Dependencies:
+    - Lazysizes plugin (https://github.com/aFarkas/lazysizes) which enable responsive image with faster load time and better performance.
+    - Lazysizes Bgset (https://github.com/aFarkas/lazysizes/tree/gh-pages/plugins/bgset) To use responsive images on background-image (CSS)
+
+    Accepts:
+    - image: {Object} Image object or 'none'
+    - mobile_image: {Object} Image object or 'none'
+    - mobile_breakpoint: {String} with 'px'
+
+    Usage:
+    In your liquid template file, copy the following line
+
+    <div class="lazyload" data-bgset="{% render 'responsive-bg-image', image: article.image %}"></div>
+{% endcomment %}
+
+{% assign mobile_breakpoint = mobile_breakpoint | default: '750px' %}
+
+{% assign widths = '180,360,540,720,900,1080,1296,1512,1728,1944,2160,2376,2529,2808,3024' | split: ',' %}
+
+{%- if mobile_image == 'none' -%}
+  {{ 'transparent.png' | asset_img_url }} [(max-width: {{ mobile_breakpoint }})] |
+{%- elsif mobile_image != blank -%}
+  {%- for width in widths -%}
+    {%- assign width_int = width | plus: 0 -%}
+    {%- if mobile_image.width < width_int -%}{%- break -%}{%- endif -%}
+    {%- assign img_width = width | append: 'x' -%}
+    {{ mobile_image | img_url: img_width }} {{ width }}w {{ width | divided_by: mobile_image.aspect_ratio | round }}h,
+  {%- endfor -%}
+
+  {%- assign img_width = mobile_image.width | append: 'x' -%}
+    {{ mobile_image | img_url: img_width }} {{ mobile_image.width }}w {{ mobile_image.height }}h
+  [(max-width: {{ mobile_breakpoint }})] |
+{%- endif -%}
+
+{%- if image == 'none' -%}
+  {{ 'transparent.png' | asset_img_url }}
+{%- elsif image != blank -%}
+  {%- for width in widths -%}
+    {%- assign width_int = width | plus: 0 -%}
+    {%- if image.width < width_int %}{% break %}{% endif -%}
+    {%- assign img_width = width | append: 'x' -%}
+    {{ image | img_url: img_width }} {{ width }}w {{ width | divided_by: image.aspect_ratio | round }}h,
+  {%- endfor -%}
+
+  {%- assign image_size = image.width | append: 'x' -%}
+  {{ image | img_url: image_size }} {{ image.width }}w {{ image.height }}h
+{%- endif -%}

@@ -1,0 +1,18 @@
+/* ============================================================================
+  Pagination
+============================================================================== */
+
+.pagination {
+  text-align: center;
+
+  ol > .pagination__page,
+  ol > .pagination__prev,
+  ol > .pagination__next {
+    display: inline-block;
+    line-height: 1;
+  }
+
+  &__page {
+    padding: 8px;
+  }
+}

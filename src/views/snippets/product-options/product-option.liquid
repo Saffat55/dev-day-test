@@ -1,0 +1,85 @@
+{%- comment -%}
+  PARAMETERS:
+  option : option object (required)
+  display_selected_value_text : boolean (optional)
+  type : 'radio', 'swatch', 'select' (required)
+  product : product object (requried)
+  id : Input ID if there is an associated label with a matching 'for' attribute (optional)
+
+
+  USAGE:
+  {% render 'product-option' with
+    option: option,
+    display_selected_value_text: true,
+    type: 'swatch',
+    product: product
+  %}
+{%- endcomment -%}
+
+{%- liquid
+  assign id_prefix = 'product-swatch-' | append: section.id | append: '-' | append: product.id
+	if type == 'swatch'
+    assign swatch_metafields = shop.metafields.custom_fields.swatches
+  endif
+-%}
+
+<fieldset class="product-option"
+  data-product-option-group
+  data-option-name="{{ option.name | handleize }}"
+  data-option-index="{{ option.position }}"
+  data-type="{{ type }}"
+>
+  <legend>
+    <strong>{{ option.name }}{%- if display_selected_value_text == true -%} :{% endif %}</strong>
+    {%- if display_selected_value_text == true -%}
+      <span data-product-option-group-selected-text>{{ option.selected_value }}</span>
+    {%- endif -%}
+  </legend>
+
+  {% if type == 'radio' or type == 'swatch' %}
+    <div class="product-option__option-values">
+      {% for value in option.values %}
+        <div class="product-option-item product-option-item--{{ option.name | handleize }}"
+          data-product-option-item
+        >
+          <input type="radio"
+            id="{{ id_prefix }}-{{ value | handleize }}"
+            value="{{ value }}"
+            name="{{ id_prefix }}-{{ option.name | handleize }}"
+            {% if option.selected_value == value %}checked{% endif %}
+            data-product-option
+            data-option-index="{{ option.position }}"
+            data-type="radio"
+            data-selected-text="{{ value }}"
+          />
+          <label for="{{ id_prefix }}-{{ value | handleize }}">
+            {% assign swatch_meta_value = swatch_metafields | where: 'color_value', value | first %}
+            {% if type == 'swatch' and swatch_meta_value != blank %}
+              <div class="product-option-item__swatch"
+                style="{%- if swatch_meta_value.swatch_hex != blank -%}background-color:{{ swatch_meta_value.swatch_hex }};{%- endif -%}
+                  {%- if swatch_meta_value.swatch_image != blank %}background-image:url({{ swatch_meta_value.swatch_image }});{%- endif -%}"
+              ></div>
+              <span class="visually-hidden">
+                {{ value }}
+              </span>
+            {% else %}
+              <span>{{ value }}</span>
+            {% endif %}
+          </label>
+        </div>
+      {% endfor %}
+    </div>
+  {% elsif type == 'select' %}
+    <select name="{{ id_prefix }}-{{ option.name | handleize }}"
+      data-product-option
+      data-custom-dropdown
+    >
+      {%- for value in option.values -%}
+        <option value="{{ value }}" data-product-option-option
+          data-option-index="{{ option.position }}"
+          {% if option.selected_value == value %}selected{% endif %}
+        >{{ value }}</option>
+      {%- endfor -%}
+    </select>
+  {% endif %}
+</fieldset>

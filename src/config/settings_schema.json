@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Dimensions 64 x 64 .png"
+      }
+    ]
+  },
+  {
+    "name": "Schema",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "schema_logo",
+        "label": "Company Logo",
+        "info": "Minimum dimensions: 112 x 112px"
+      },
+      {
+        "type": "textarea",
+        "id": "schema_same_as",
+        "label": "Social Media URLs",
+        "info": "Comma separated list of social media URLs"
+      }
+    ]
+  }
+]

@@ -1,0 +1,80 @@
+/* ============================================================================
+  Layout - Account
+============================================================================== */
+
+.account__order {
+  position: relative;
+  margin-bottom: 16px;
+  padding: 24px;
+  border-radius: $border-radius;
+
+  &.active {
+    .account__order-info {
+      display: flex;
+    }
+
+    .icon-plus {
+      display: none;
+    }
+
+    .icon-minus {
+      display: block;
+    }
+  }
+}
+
+.account__order-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .icon-minus {
+    display: none;
+  }
+}
+
+.account__order-info {
+  display: none;
+
+  @include media-query($min, $medium) {
+    display: flex;
+  }
+}
+
+.account__order-image {
+  flex-shrink: 0;
+  margin-right: 16px;
+}
+
+.account__order-details {
+  flex-grow: 1;
+}
+
+.account__order-total {
+  @include media-query($min, $medium) {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+}
+
+.account__order-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.account__details {
+  padding: 24px;
+  border-radius: $border-radius;
+
+  a {
+    display: block;
+  }
+}
+
+.account__order-table {
+  padding: 24px;
+  border-radius: $border-radius;
+}

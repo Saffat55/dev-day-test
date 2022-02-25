@@ -1,0 +1,38 @@
+{% unless product.has_only_default_variant %}
+  <div class="product-options">
+    {%- for option in product.options_with_values -%}
+      {%- liquid
+        assign option_name = option.name | downcase
+        assign display_selected_value_text = false
+        assign type = 'radio'
+        if option_name == 'color'
+          assign display_selected_value_text = true
+          assign type = 'swatch'
+        elsif option_name == 'material'
+          assign display_selected_value_text = true
+          assign type = 'select'
+        endif
+      -%}
+      {% render 'product-option' with
+        option: option,
+        display_selected_value_text: display_selected_value_text,
+        type: type,
+        product: product
+      %}
+    {%- endfor -%}
+
+    {% if display_low_stock == true %}
+      <p class="product-swatches__stock_message hide" aria-live="polite"
+        data-variant-stock-message
+        data-no-stock-text="{{ 'products.product.no_stock' | t }}"
+        data-low-stock-text="{{ 'products.product.limited_stock' | t }}"
+        data-not-available-text="{{ 'products.product.selection_unavailable' | t }}"
+        data-low-stock-breakpoint="5"
+      >{{ 'products.product.no_stock' | t }}</p>
+    {% endif %}
+
+    <script data-product-json type='text/template'>
+      {{ product | json }}
+    </script>
+  </div>
+{% endunless %}

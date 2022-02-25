@@ -1,0 +1,123 @@
+<footer class="site-footer medium-down--text-center" role="contentinfo" aria-label="Site Footer">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h3>{{ linklists[section.settings.menu_1].title }}</h3>
+
+        <ul class="no-bullets">
+          {% for link in linklists[section.settings.menu_1].links %}
+            <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="col">
+        <h3>{{ linklists[section.settings.menu_2].title }}</h3>
+
+        <ul class="no-bullets">
+          {% for link in linklists[section.settings.menu_2].links %}
+            <li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="col">
+        <ul class="inline-list">
+          {% if section.settings.facebook_link != blank %}
+            <li>
+              <a href="{{ section.settings.facebook_link }}" target="_blank" title="Facebook Link">
+                {% render 'icon-facebook' %}
+              </a>
+            </li>
+          {% endif %}
+
+          {% if section.settings.twitter_link != blank %}
+            <li>
+              <a href="{{ section.settings.twitter_link }}" target="_blank" title="Twitter Link">
+                {% render 'icon-twitter' %}
+              </a>
+            </li>
+          {% endif %}
+
+          {% if section.settings.instagram_link != blank %}
+            <li>
+              <a href="{{ section.settings.instagram_link }}" target="_blank" title="Instagram Link">
+                {% render 'icon-instagram' %}
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+
+      {% if section.settings.klaviyo_list_id != blank %}
+        <div class="col">
+          <h3>{{ section.settings.newsletter_title }}</h3>
+          {% render 'newsletter-form' with list_id: section.settings.klaviyo_list_id %}
+        </div>
+      {% endif %}
+
+      <div class="site-footer__copyright col">
+        <small>&copy; {{ 'now' | date: "%Y" }} {{ shop.name }}</small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Menus"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_1",
+        "label": "Menu 1",
+        "default": "footer"
+      },
+      {
+        "type": "link_list",
+        "id": "menu_2",
+        "label": "Menu 2",
+        "default": "footer"
+      },
+      {
+        "type": "header",
+        "content": "Newsletter"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_title",
+        "label": "Title",
+        "default": "Newsletter"
+      },
+      {
+        "type": "text",
+        "id": "klaviyo_list_id",
+        "label": "Klaviyo List ID",
+        "default": "WjpuMv"
+      },
+      {
+        "type": "header",
+        "content": "Social Links"
+      },
+      {
+        "type": "text",
+        "id": "facebook_link",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "text",
+        "id": "instagram_link",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "twitter_link",
+        "label": "Twitter URL"
+      }
+    ]
+  }
+{% endschema %}

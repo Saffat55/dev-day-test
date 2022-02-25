@@ -1,0 +1,51 @@
+{% comment %}
+  PARAMETERS:
+  max : maximum value (optional but recommended)
+  min : minimum value (optional)
+  value : Current or initial value (optional)
+  product_title : Product title for accessibility text (optional but recommeneded)
+  id : Input ID if there is an associated label with a matching 'for' attribute (optional)
+
+
+  USAGE:
+  {% render 'quantity-selector' with
+    min: 0,
+    max: item.variant.inventory_quantity,
+    value: item.quantity,
+    product_title: item.product.title,
+    id: 'id-for-input'
+  %}
+{% endcomment %}
+
+
+<quantity-selector>
+  <div class="quantity-selector">
+    <button class="quantity-selector__btn" type="button"
+      data-quantity-button
+      data-action="minus"
+      aria-label="Minus {{ product_title }} Quantity"
+      {% if id %}aria-controls="{{ id }}"{% endif %}
+    >-</button>
+
+    <input class="quantity-selector__input" type="number" name="quantity"
+      data-quantity-input
+      max="{{ max | default: 12 }}"
+      min="{{ min | default: 1 }}"
+      value="{{ value | default: 1  }}"
+      aria-label="{{ product_title }} Quantity Input"
+      {% if id %}id="{{ id }}"{% endif %}
+    >
+
+    <button class="quantity-selector__btn " type="button"
+      data-quantity-button
+      data-action="plus"
+      aria-label="Plus {{ product_title }} Quantity"
+      {% if id %}aria-controls="{{ id }}"{% endif %}
+    >+</button>
+  </div>
+
+  <span class="quantity-selector-notice hide"
+    data-quantity-limit-notice
+    data-text="{{ 'products.product.quantity_limit_reached' | t }}"
+  >{{ 'products.product.quantity_limit_reached' | t: limit: max }}</span>
+</quantity-selector>

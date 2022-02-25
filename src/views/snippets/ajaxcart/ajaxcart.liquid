@@ -1,0 +1,115 @@
+{% if settings.ajaxcart == true %}
+  <div class="drawer drawer--right" role="region" aria-label="Cart" data-drawer="cart">
+    <div class="drawer__outside">
+      <div class="drawer__inside">
+        <div class="drawer__header text-right">
+          <button type="button" class="drawer__close" aria-label="Close Cart" data-drawer-close>
+            {% render 'icon-close' %}
+          </button>
+        </div>
+
+        <div class="ajaxcart">
+          <div data-line-item-count="{{ cart.items.size }}" data-ajaxcart-content>
+            {% if cart.item_count > 0 %}
+              {% for item in cart.items %}
+                <div class="ajaxcart__item" data-line-item-key="{{ item.key }}">
+                  <div class="row">
+                    <div class="col-3">
+                      <a class="image-link" href="{{ item.url }}" title="{{ item.product.title }} - {{ item.line_price | money }}">
+                        {% render 'responsive-image' with
+                          image: item.image,
+                          max_width: 85,
+                          max_height: 85,
+                          id_suffix: 'ajaxcart'
+                        %}
+                      </a>
+                    </div>
+
+                    <div class="col-9">
+                      <h4>
+                        <a href="{{ item.url }}" title="{{ item.product.title }} - {{ item.line_price | money }}">
+                          {{ item.product.title }}
+                        </a>
+                      </h4>
+
+                      {% unless item.variant.title contains 'Default' %}
+                        <span>{{ item.variant.title }}</span>
+                      {% endunless %}
+
+                      <br>
+
+                      {% assign property_size = item.properties | size %}
+                      {% if property_size > 0 %}
+                        <small>
+                          {% for p in item.properties %}
+                            {% unless p.last == blank %}
+                              {{ p.first }}:
+                              {% if p.last contains '/uploads/' %}
+                                <a href="{{ p.last }}" title="{{ p.first }}">{{ p.last | split: '/' | last }}</a>
+                              {% else %}
+                                {{ p.last }}
+                              {% endif %}
+                              <br>
+                            {% endunless %}
+                          {% endfor %}
+                        </small>
+                      {% endif %}
+
+                      <div class="row">
+                        <div class="col-6">
+                          {% render 'quantity-selector' with
+                            min: 0,
+                            max: item.variant.inventory_quantity,
+                            value: item.quantity,
+                            product_title: item.product.title
+                          %}
+
+                          <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" title="{{ 'cart.general.remove' | t }} {{ item.product.title }}" data-line-item-key="{{ item.key }}" data-line-item-remove>
+                            {{ 'cart.general.remove' | t }}
+                          </a>
+                        </div>
+
+                        <div class="col-6 text-right">
+                          {% if item.message and item.original_line_price > item.line_price %}
+                            <s data-line-item-original-price>{{ item.original_line_price | money }}</s>
+                            <span data-line-item-price>{{ item.line_price | money }}</span>
+                            <span>{{ item.message }}</span>
+                          {% else %}
+                            <span data-line-item-price>{{ item.line_price | money }}</span>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr>
+                </div>
+              {% endfor %}
+
+              <div class="ajaxcart__footer">
+                <div class="row">
+                  <div class="col-8">
+                    <p>{{ 'cart.general.subtotal' | t }}</p>
+                  </div>
+
+                  <div class="col-4 text-right">
+                    <p data-cart-subtotal>{{ cart.total_price | money }}</p>
+                  </div>
+                </div>
+
+                <p class="text-center">{{ 'cart.general.shipping_at_checkout' | t }}</p>
+
+                <a class="btn btn--full" href="/checkout" title="{{ 'cart.general.checkout' | t }}">{{ 'cart.general.checkout' | t }}</a>
+              </div>
+            {% else %}
+              <div class="ajaxcart__empty text-center">
+                <h3>{{ 'cart.general.empty' | t }}</h3>
+                <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}

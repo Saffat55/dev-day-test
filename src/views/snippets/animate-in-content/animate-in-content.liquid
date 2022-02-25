@@ -1,0 +1,12 @@
+{% comment %}
+  Used for adding data-animate-in to individual elements in large chunks of content from the Shopify editor.
+  Example: {% render 'animate-in-content' with animate_content: article.content %}
+{% endcomment %}
+
+{% assign animate_list = "p, ul, ol, h2, h3, h4, h5, h6, blockquote" | split: ',' %}
+{% for elm in animate_list %}
+  {% capture replace_elm %}<{{ elm | strip }}>{% endcapture %}
+  {% capture new_elm %}<{{ elm | strip }} data-animate-in>{% endcapture %}
+  {% assign animate_content = animate_content | replace: replace_elm, new_elm %}
+{% endfor %}
+{{ animate_content }}
