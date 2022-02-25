@@ -1,0 +1,43 @@
+{
+    "javascript.format.enable": false,
+    "javascript.validate.enable": false,
+    "standard.enable": true,
+    "standard.usePackageJson": true,
+    "standard.autoFixOnSave": true,
+    "standard.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.stylelint": true
+    },
+    "files.autoSaveDelay": 500,
+    "prettier.ignorePath": ".prettierignore",
+    "terminal.integrated.altClickMovesCursor": false,
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#35b104",
+      "activityBar.activeBorder": "#064bf9",
+      "activityBar.background": "#35b104",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#064bf9",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "editorGroup.border": "#35b104",
+      "panel.border": "#35b104",
+      "sash.hoverBorder": "#35b104",
+      "sideBar.border": "#35b104",
+      "statusBar.background": "#267f03",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#35b104",
+      "statusBarItem.remoteBackground": "#267f03",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "tab.activeBorder": "#35b104",
+      "titleBar.activeBackground": "#267f03",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#267f0399",
+      "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#267f03"
+}

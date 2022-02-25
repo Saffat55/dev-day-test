@@ -1,0 +1,37 @@
+<!-- Controls Bool -
+Autoplay Bool -
+vtt srcc attr
+described by attr
+button Bool
+bg Bool
+
+Becky's Mobile UX
+Kyle's suspend function -->
+
+<video
+  playsinline
+  muted
+  autoplay
+  loop
+  class="video {{ classes }} video--background"
+  data-video
+  {{ attributes }}
+  aria-hidden="true"
+  aria-disabled="true"
+>
+  {% if disable_defer %}
+    <source
+      src="{{ src }}"
+      type="video/{{ file_type | default: 'mp4' }}"
+    >
+  {% else %}
+    <source
+      src=""
+      class="hide"
+      data-src="{{ src }}"
+      {% if mobile_src != blank %}data-mobile-src="{{ mobile_src }}"{% endif %}
+      type="video/{{ file_type | default: 'mp4' }}"
+    >
+  {% endif %}
+  Sorry, your browser doesn't support embedded videos.
+</video>

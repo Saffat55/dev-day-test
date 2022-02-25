@@ -1,0 +1,64 @@
+{% if id_suffix != blank %}
+  {% assign video_id_suffix = '-' | append: id_suffix %}
+{% endif %}
+
+{% if play_button %}
+  <button data-video-toggle class="video__button-wrapper" role="button" aria-label="Play Video">
+    {% render 'icon-play' %}
+{% endif %}
+<video
+  {% if controls %}controls{% endif %}
+  {% if autoplay %}playsinline muted autoplay loop{% endif %}
+  {% if loop and autoplay == false %}loop{% endif %}
+  {% if muted and autoplay == false %}muted{% endif %}
+  {% if poster != blank %}
+    {% if poster_is_url %}
+      poster="{{ poster }}"
+    {% else %}
+      poster="{{ poster | img_url: 'master' }}"
+    {% endif %}
+  {% else %}
+    preload="auto"
+  {% endif %}
+  class="video {{ classes }}"
+  data-video
+  {{ attributes }}
+  id="video{{ video_id_suffix }}"
+  {% if transcript_text %}
+    aria-describedby="video-transcript{{ video_id_suffix }}"
+  {% endif %}
+>
+  {% if disable_defer %}
+    <source
+      src="{{ src }}"
+      type="video/{{ file_type | default: 'mp4' }}"
+    >
+  {% else %}
+    <source
+      src=""
+      class="hide"
+      data-src="{{ src }}"
+      {% if mobile_src != blank %}data-mobile-src="{{ mobile_src }}"{% endif %}
+      type="video/{{ file_type | default: 'mp4' }}"
+    >
+  {% endif %}
+
+  {% if transcript_file %}
+    <!-- <track src="{{  }}" label="English" kind="subtitles" srclang="en" default>  -->
+    <track src="{{ 'test.vtt' | asset_url }}" label="English" kind="subtitles" srclang="en" default> 
+  {% endif %}
+  Sorry, your browser doesn't support embedded videos.
+</video>
+{% if play_button %}
+  </button>
+{% endif %}
+{% if transcript_text %}
+  <span id="video-transcript{{ video_id_suffix }}" class="visually-hidden">{{ transcript_text }}</span>
+{% endif %}
+
+<!--
+
+  TODO:
+  - vtt files
+  - videos getting suspended off screen
+-->

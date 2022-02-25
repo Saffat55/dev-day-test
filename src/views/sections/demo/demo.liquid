@@ -1,0 +1,132 @@
+{% for block in section.blocks %}
+  <div class="video-{{ forloop.index }}">
+    {% if forloop.index == 1 %}
+      {% render 'video' with
+        autoplay: true,
+        poster: block.settings.button,
+        src: block.settings.video,
+        mobile_src: block.settings.mobile_video,
+        transcript_text: block.settings.transcript_text,
+        id_suffix: forloop.index
+      %}
+    {% elsif forloop.index == 2 %}
+      {% render 'video' with
+        poster: block.settings.button,
+        src: block.settings.video,
+        play_button: true,
+        id_suffix: forloop.index
+      %}
+    {% elsif forloop.index == 3 %}
+      {% render 'background-video' with
+        poster: block.settings.button,
+        src: block.settings.video,
+        id_suffix: forloop.index
+      %}
+      <h1>Hero</h1>
+    {% else %}
+    {% endif %}
+    <h2 class="text-center">{{ block.settings.demo_desc }}</h2>
+    <hr>
+  </div>
+  <style>
+    .video-{{ forloop.index }} {
+      width: 1200px;
+      margin: 0 auto 40px;
+      max-width: 100%;
+      padding: 0 24px;
+    }
+
+    .video-{{ forloop.index }} video {
+      display: block;
+      width: 100%;
+    }
+
+    .video-3 {
+      position: relative;
+    }
+
+    .video-3 h1 {
+      font-size: 40px;
+      color: white;
+      padding: 100px 0;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .video-3 h2 {
+      font-size: 40px;
+      color: white;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .video-3 hr {
+      z-index: 1;
+    }
+
+    .video-2 .video__button-wrapper {
+      width: 600px;
+      height: 600px;
+      margin: 0 auto 20px;
+      display: block;
+    }
+
+    .video-2 video {
+      height: 100%;
+    }
+
+    video {
+      max-height: 600px;
+    }
+  </style>
+{% endfor %}
+
+{% schema %}
+  {
+    "blocks": [
+      {
+        "type": "video",
+        "name": "Video",
+        "settings": [
+          {
+            "type": "text",
+            "id": "video",
+            "label": "Video"
+          },
+          {
+            "type": "text",
+            "id": "mobile_video",
+            "label": "Mobile Video"
+          },
+          {
+            "type": "text",
+            "id": "transcript_file",
+            "label": "Transcript File"
+          },
+          {
+            "type": "textarea",
+            "id": "transcript_text",
+            "label": "Transcript Text"
+          },
+          {
+            "type": "image_picker",
+            "id": "button",
+            "label": "Button Text"
+          },
+          {
+            "type": "textarea",
+            "id": "demo_desc",
+            "label": "Demo Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Demo"
+      }
+    ]
+  }
+{% endschema %}

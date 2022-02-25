@@ -1,0 +1,11 @@
+<div class="quantity-selector" data-quantity-selector>
+  <button class="quantity-selector__minus" type="button" aria-label="Minus {{ item.product.title }} Quantity" data-quantity-minus data-quantity-adjust>
+    {% render 'icon-minus' %}
+  </button>
+
+  <input class="quantity-selector__input" type="number" min="0" aria-label="{{ item.product.title }} Quantity Input" max="{{ item.variant.inventory_quantity }}" value="{{ item.quantity }}" data-line-item-key="{{ item.key }}" data-quantity-input>
+
+  <button class="quantity-selector__plus" type="button" aria-label="Plus {{ item.product.title }} Quantity" data-quantity-plus data-quantity-adjust>
+    {% render 'icon-plus' %}
+  </button>
+</div>
