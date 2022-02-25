@@ -1,0 +1,38 @@
+<script src="{{ 'collection.js' | asset_url }}" defer="defer"></script>
+{{ 'collection.css' | asset_url | stylesheet_tag }}
+
+<div class="container-lg">
+  {% paginate collection.products by 12 %}
+    <div class="row">
+      <div class="col">
+        <h1>{{ collection.title }}</h1>
+      </div>
+
+      <div class="col-auto">
+        {% render 'collection-sorting' %}
+      </div>
+    </div>
+
+    {% if collection.description != blank %}
+      <div class="rte">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+
+    {% if collection.all_products_count >= 1 %}
+      <div class="grid">
+        {% for product in collection.products %}
+          <div class="g-col-4">
+            {% render 'collection-item' with product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <h3 class="text-center">{{ 'collections.general.no_matches' | t }}</h3>
+    {% endif %}
+
+    {% if paginate.pages > 1 %}
+      {% render 'pagination', paginate: paginate %}
+    {% endif %}
+  {% endpaginate %}
+</div>

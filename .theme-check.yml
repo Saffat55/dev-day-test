@@ -1,0 +1,28 @@
+root: dist
+
+LiquidTag:
+  enabled: false
+
+ImgLazyLoading:
+  enabled: false
+
+ImgWidthAndHeight:
+  enabled: false
+
+DeprecateLazysizes:
+  enabled: false
+
+DeprecateBgsizes:
+  enabled: false
+
+UnusedSnippet:
+  enabled: false
+
+RemoteAsset:
+  enabled: false
+
+UnusedAssign:
+  enabled: false
+
+UndefinedObject:
+  enabled: false
