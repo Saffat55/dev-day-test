@@ -1,0 +1,100 @@
+/* ============================================================================
+  Typography
+============================================================================== */
+
+body,
+input,
+textarea,
+button,
+select,
+label {
+  color: $color-body-text;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: calc-rem(16px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  line-height: 1.6;
+  text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  margin: 0 0 8px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+
+  a {
+    font-weight: inherit;
+    text-decoration: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+small,
+span {
+  &::selection {
+    background: $color-selection;
+    color: $color-white;
+  }
+}
+
+h1 {
+  font-size: calc-rem(30px);
+}
+
+h2 {
+  font-size: calc-rem(28px);
+}
+
+h3 {
+  font-size: calc-rem(24px);
+}
+
+h4 {
+  font-size: calc-rem(22px);
+}
+
+h5 {
+  font-size: calc-rem(18px);
+}
+
+h6 {
+  font-size: calc-rem(18px);
+}
+
+p {
+  margin: 0 0 ($gutter / 2) 0;
+}
+
+em {
+  font-style: italic;
+}
+
+b,
+strong {
+  font-weight: 600;
+}
+
+small {
+  font-size: calc-rem(14px);
+}
+
+sup,
+sub {
+  position: relative;
+  vertical-align: baseline;
+}

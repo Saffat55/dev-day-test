@@ -1,0 +1,38 @@
+/* ============================================================================
+  Media
+============================================================================== */
+
+img {
+  width: 100%;
+  height: auto;
+  border: 0 none;
+}
+
+img,
+iframe {
+  max-width: 100%;
+}
+
+.responsive-video {
+  position: relative;
+  height: 0;
+  padding-top: 25px;
+  padding-bottom: 56.25%;
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.aspect {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-bottom: var(--aspect, 100%);
+}

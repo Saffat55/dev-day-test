@@ -1,0 +1,39 @@
+/* ============================================================================
+  Layout
+============================================================================== */
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+.wrapper {
+  @include clearfix;
+  max-width: $site-width;
+  padding: 0 $wrapper-padding;
+  margin: 0 auto;
+}
+
+.site-container {
+  overflow-x: hidden;
+}
+
+.site-content {
+  &.wrapper {
+    padding-bottom: $gutter * 2;
+    margin-top: $gutter;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

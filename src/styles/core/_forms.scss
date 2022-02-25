@@ -1,0 +1,233 @@
+/* ============================================================================
+  Forms
+============================================================================== */
+
+@include media-query($max, $medium) {
+  input,
+  textarea {
+    font-size: calc-rem(16px);
+  }
+}
+
+input,
+textarea {
+  user-select: text;
+}
+
+button,
+input,
+textarea {
+  appearance: none;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+fieldset {
+  padding: $gutter / 2;
+  border: 1px solid $color-border;
+}
+
+legend {
+  padding: 0;
+  border: 0;
+}
+
+button,
+input[type='submit'] {
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  max-width: 100%;
+  padding: 8px 10px;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+
+  &[disabled],
+  &.disabled {
+    border-color: $color-disabled;
+    background-color: $color-disabled;
+    cursor: default;
+  }
+
+  &.input-full {
+    width: 100%;
+  }
+}
+
+textarea {
+  min-height: 96px;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  display: inline;
+  width: auto;
+  padding: 0;
+  margin: 0 8px 0 0;
+}
+
+input[type='checkbox'] {
+  appearance: checkbox;
+}
+
+input[type='radio'] {
+  appearance: radio;
+}
+
+input[type='image'] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+select {
+  width: auto;
+  padding-right: 28px;
+  appearance: none;
+  background-color: transparent;
+  background-image: url('select.svg');
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+  border-radius: 0;
+  cursor: pointer;
+  text-indent: 0.01px;
+  text-overflow: '';
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+label[for] {
+  cursor: pointer;
+}
+
+form {
+  input,
+  textarea,
+  select {
+    width: 100%;
+  }
+}
+
+.form-vertical {
+  input,
+  select,
+  textarea,
+  button {
+    display: block;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  input[type='radio'],
+  input[type='checkbox'] {
+    display: inline-block;
+  }
+
+  a,
+  p {
+    display: block;
+  }
+
+  p > a {
+    display: inline-block;
+  }
+
+  h1 {
+    margin-bottom: 24px;
+  }
+}
+
+.form-inline {
+  position: relative;
+  display: table;
+
+  input,
+  div,
+  .btn {
+    display: table-cell;
+    height: 42px;
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  div {
+    position: relative;
+    width: 1%;
+    padding: 0;
+    white-space: nowrap;
+  }
+}
+
+.form-errors,
+.form-success {
+  display: block;
+  padding: 12px;
+  margin-bottom: 16px;
+  text-align: center;
+
+  ul {
+    margin: 0;
+    list-style-type: none;
+  }
+
+  li {
+    margin: 0;
+  }
+}
+
+.form-errors {
+  color: $color-error;
+}
+
+.form-success {
+  color: $color-success;
+}
+
+/* stylelint-disable selector-max-attribute, max-nesting-depth */
+form[data-validation-required] {
+  [data-required-field-wrapper] {
+    position: relative;
+
+    [data-required-field].input-error {
+      border: 1px solid $color-error;
+
+      + span {
+        display: block;
+
+        &::after {
+          position: absolute;
+          top: -20px;
+          right: 0;
+          width: max-content;
+          content: attr(data-after);
+          font-size: calc-rem(12px);
+        }
+      }
+    }
+
+    span {
+      position: absolute;
+      top: 0;
+      right: 10px;
+      display: none;
+      height: 100%;
+      color: $color-error;
+      font-size: calc-rem(24px);
+      font-weight: 700;
+    }
+  }
+}
+/* stylelint-enable selector-max-attribute, max-nesting-depth */

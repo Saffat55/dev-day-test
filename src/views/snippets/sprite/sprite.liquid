@@ -1,0 +1,71 @@
+{% comment %}
+  Sprite Animations
+
+  See notion for documentation
+  https://www.notion.so/pointer/Sprite-Animations-77930d5a81db44c198737c35e3410228
+
+{% endcomment %}
+
+{% if sprite_name != blank %}
+  {% assign prefixed_name = 'sprite-' | append: sprite_name %}
+  {% assign image_width = image_width | default: '1920x' %}
+  {%- capture json -%}{% include prefixed_name %}{%- endcapture -%}
+
+  {% comment %} Extract settings from JSON file  {% endcomment %}
+  {% assign sheet_count_split = json | split: '%%' %}
+  {% assign sheet_count = 1 %}
+  {% assign sheet_count_loop = 0 %}
+  {% assign image_type_split = json | split: '&&' %}
+  {% assign image_type = 'jpg' %}
+  {% assign aspect_ratio_split = json | split: '**' %}
+  {% assign aspect_ratio = '100%' %}
+
+  {% for part in sheet_count_split %}
+    {% if forloop.index == 2 %}
+      {% assign sheet_count = part | times: 1 %}
+      {% assign sheet_count_loop = sheet_count | minus: 1 %}
+    {% endif %}
+  {% endfor %}
+
+  {% for part in image_type_split %}
+    {% if forloop.index == 2 %}
+      {% assign image_type = part %}
+    {% endif %}
+  {% endfor %}
+
+  {% for part in aspect_ratio_split %}
+    {% if forloop.index == 2 %}
+      {% assign aspect_ratio = part %}
+    {% endif %}
+  {% endfor %}
+
+  {%- capture attrs -%}
+    {% if frame_rate %}data-frame-rate="{{ frame_rate }}" {% endif %}
+    {% if frame_start %}data-frame-start="{{ frame_start }}" {% endif %}
+    {% if frame_end %}data-frame-end="{{ frame_end }}" {% endif %}
+    {% if auto_play == false %}data-auto-play="0" {% endif %}
+    {% if loop == false %}data-loop="0" {% endif %}
+    {{ attributes }}
+  {%- endcapture -%}
+
+  {% unless json contains "Liquid error" %}
+    <div class="sprite {{ wrapper_class }}" data-sprite="{{ sprite_name }}" {{ attrs }} style="visibility: hidden;">
+      <div class="aspect" style="--aspect: {{ aspect_ratio }};">
+        {% for i in (0..sheet_count_loop) %}
+          {% assign image_name = prefixed_name | append: '-' | append: i | append: '.' | append: image_type %}
+          <img src="{{ image_name | asset_img_url: image_width }}" alt="{{ sprite_name }}">
+        {% endfor %}
+      </div>
+    </div>
+
+    <script>
+      try {
+        window.POINTER = window.POINTER || {};
+        window.POINTER.sprites = window.POINTER.sprites || {};
+        window.POINTER.sprites['{{ sprite_name }}'] = {{ json }};
+      } catch (error) {
+        console.log('Error loading `{{ sprite_name }}` sprite json', error)
+      }
+    </script>
+  {% endunless %}
+{% endif %}
