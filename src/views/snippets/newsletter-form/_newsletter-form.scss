@@ -1,0 +1,15 @@
+/* ============================================================================
+  Newsletter Form (Klaviyo)
+============================================================================== */
+
+.newsletter-form {
+  .klaviyo_messages {
+    .success_message {
+      color: $color-success;
+    }
+
+    .error_message {
+      color: $color-error;
+    }
+  }
+}

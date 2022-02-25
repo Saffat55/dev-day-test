@@ -1,0 +1,42 @@
+/* ============================================================================
+  Lists
+============================================================================== */
+
+ul,
+ol {
+  margin: 0 0 ($gutter / 2) 20px;
+  padding: 0;
+
+  &.grid {
+    margin-left: -$gutter;
+  }
+}
+
+ol {
+  list-style: decimal;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+  margin: 4px 0 5px 20px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.no-bullets {
+  margin-left: 0;
+  list-style: none outside;
+}
+
+.inline-list {
+  margin-left: 0;
+
+  li {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+}

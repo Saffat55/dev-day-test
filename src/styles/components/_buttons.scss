@@ -1,0 +1,110 @@
+/* ============================================================================
+  Buttons and links
+============================================================================== */
+
+a,
+.text-link {
+  display: inline-block;
+  background: transparent;
+  color: $color-primary;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: lighten($color-primary, 15%);
+  }
+
+  img {
+    display: block;
+  }
+}
+
+.image-link {
+  display: block;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+.btn,
+button {
+  span,
+  svg {
+    pointer-events: none;
+  }
+}
+
+.btn {
+  display: inline-block;
+  width: auto;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  background-color: $color-btn-primary;
+  color: $color-btn-primary-text;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: darken($color-btn-primary, 15%);
+    color: $color-btn-primary-text;
+  }
+
+  &[disabled],
+  &.disabled {
+    background-color: $color-disabled;
+    color: darken($color-disabled, 20%);
+    cursor: default;
+
+    &:hover,
+    &:focus {
+      background-color: $color-disabled;
+      color: darken($color-disabled, 20%);
+    }
+  }
+}
+
+.btn--secondary {
+  background-color: $color-btn-secondary;
+  color: $color-btn-secondary-text;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: darken($color-btn-secondary, 15%);
+    color: $color-btn-secondary-text;
+  }
+}
+
+.btn--outline {
+  border: 2px solid $color-btn-primary;
+  background: none;
+  color: $color-btn-primary;
+
+  &.btn--secondary {
+    border: 2px solid $color-btn-secondary;
+    color: $color-btn-secondary;
+
+    &:hover,
+    &:active,
+    &:focus {
+      border: 2px solid darken($color-btn-secondary, 15%);
+      color: $color-btn-secondary-text;
+    }
+  }
+}
+
+.btn--full {
+  width: 100%;
+}
