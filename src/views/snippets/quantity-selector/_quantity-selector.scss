@@ -1,0 +1,46 @@
+/* ============================================================================
+  Quantity selector
+============================================================================== */
+
+.quantity-selector {
+  position: relative;
+  max-width: 120px;
+  margin: 5px 0;
+  color: $color-drawer-background;
+
+  input {
+    width: 100%;
+    appearance: textfield;
+    text-align: center;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    appearance: none;
+  }
+
+  button {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    padding: 5px;
+    transform: translateY(-50%);
+    line-height: 0;
+
+    .icon {
+      color: $color-drawer-background;
+    }
+  }
+
+  svg path {
+    fill: $color-drawer-background;
+  }
+}
+
+.quantity-selector__minus {
+  left: 5px;
+}
+
+.quantity-selector__plus {
+  right: 5px;
+}
