@@ -1,0 +1,34 @@
+<script src="{{ 'collection.js' | asset_url }}" defer="defer"></script>
+{{ 'collection.css' | asset_url | stylesheet_tag }}
+
+{% paginate collection.products by 12 %}
+  <div class="grid grid--table">
+    <div class="grid__item medium-up--6">
+      <h1>{{ collection.title }}</h1>
+    </div>
+
+    <div class="grid__item medium-up--6 medium-up--text-right">
+      {% render 'collection-sorting' %}
+    </div>
+  </div>
+
+  {% if collection.description != blank %}
+    <div class="rte">
+      {{ collection.description }}
+    </div>
+  {% endif %}
+
+  <div class="grid grid--uniform">
+    {% if collection.all_products_count >= 1 %}
+      {% render 'collection-item' for collection.products as product %}
+    {% else %}
+      <div class="grid__item">
+        <h3 class="text-center">{{ 'collections.general.no_matches' | t }}</h3>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if paginate.pages > 1 %}
+    {% render 'pagination', paginate: paginate %}
+  {% endif %}
+{% endpaginate %}

@@ -1,0 +1,65 @@
+// Helpers
+@import '~@styles/helpers/variables';
+@import '~@styles/helpers/mixins';
+@import '~@styles/helpers/functions';
+
+@import '~@sections/customers/account/account-layout';
+
+/* ============================================================================
+  Account Addresses
+============================================================================== */
+
+.account__address {
+  position: relative;
+  padding: 24px;
+  margin-bottom: 16px;
+  border-radius: $border-radius;
+
+  &.active {
+    .account__address-info {
+      display: flex;
+    }
+
+    .icon-plus {
+      display: none;
+    }
+
+    .icon-minus {
+      display: block;
+    }
+  }
+}
+
+.account__address-toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+
+  .icon-minus {
+    display: none;
+  }
+}
+
+.account__address-info {
+  display: none;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  @include media-query($min, $medium) {
+    display: flex;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.account__address-actions {
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-right: 8px;
+  }
+}

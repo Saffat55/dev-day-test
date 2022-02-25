@@ -1,0 +1,99 @@
+<script src="{{ 'hero.js' | asset_url }}" defer="defer"></script>
+{{ 'hero.css' | asset_url | stylesheet_tag }}
+
+<div class="hero swiper-container" role="region" aria-label="Hero" data-hero-slider>
+  <div class="swiper-wrapper">
+    {% for block in section.blocks %}
+      <div class="hero__slide swiper-slide lazyload" data-bgset="{% render 'responsive-bg-image', image: block.settings.image %}">
+        {% if block.settings.headline != blank or block.settings.button != blank %}
+          <div class="hero__content">
+            <div class="display-table">
+              <div class="display-table-cell text-center {{ block.settings.alignment }}">
+                <div class="wrapper">
+                  {% if block.settings.headline != blank %}
+                    {% if forloop.first %}
+                      <h1 class="hero__headline">{{ block.settings.headline }}</h1>
+                    {% else %}
+                      <h2 class="hero__headline">{{ block.settings.headline }}</h2>
+                    {% endif %}
+                  {% endif %}
+
+                  {% if block.settings.subline != blank %}
+                    <h3 class="hero__subline">{{ block.settings.subline }}</h3>
+                  {% endif %}
+
+                  {% if block.settings.button != blank %}
+                    <a class="btn" href="{{ block.settings.link }}" title="{{ block.settings.button }}">{{ block.settings.button }}</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "blocks": [
+      {
+        "type": "hero_slide",
+        "name": "Hero Slide",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "headline",
+            "label": "Headline"
+          },
+          {
+            "type": "text",
+            "id": "subline",
+            "label": "Subline"
+          },
+          {
+            "type": "text",
+            "id": "button",
+            "label": "Button Text"
+          },
+          {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          },
+          {
+            "type": "select",
+            "id": "alignment",
+            "label": "Text Alignment",
+            "options": [
+              {
+                "value": "",
+                "label": "Center"
+              },
+              {
+                "value": "large--text-left",
+                "label": "Left"
+              },
+              {
+                "value": "large--text-right",
+                "label": "Right"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero"
+      }
+    ]
+  }
+{% endschema %}

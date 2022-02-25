@@ -1,0 +1,66 @@
+/* ============================================================================
+  Layout
+============================================================================== */
+
+html,
+body {
+  &.disable-scrolling {
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  overflow-x: hidden;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+.wrapper {
+  @include clearfix;
+  max-width: $site-width;
+  padding: 0 $wrapper-padding;
+  margin: 0 auto;
+}
+
+.site-container {
+  overflow-x: hidden;
+}
+
+.site-content {
+  &.wrapper {
+    padding-bottom: $gutter * 2;
+    margin-top: $gutter;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.site-overlay {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $color-site-overlay;
+  opacity: 0;
+  transition: all $transition-drawer;
+  visibility: hidden;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
