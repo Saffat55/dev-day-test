@@ -1,0 +1,4 @@
+# Get your Personal Access Token from 'https://github.com/settings/tokens'
+# Ensure [repo (Full control of private repositories)] is checked
+# Do not share this token
+token: example_github_token

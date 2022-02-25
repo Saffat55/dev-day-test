@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "stylelint-config-property-sort-order-smacss",
+    "stylelint-config-standard-scss",
+    "stylelint-config-prettier"
+  ],
+  "rules": {
+    "color-no-hex": null,
+    "declaration-empty-line-before": null,
+    "declaration-no-important": null,
+    "selector-class-pattern": null,
+    "selector-no-qualifying-type": null,
+    "selector-max-type": null,
+    "max-nesting-depth": 5,
+    "selector-max-class": 5,
+    "selector-max-combinators": 5,
+    "selector-max-compound-selectors": 5,
+    "selector-max-specificity": "0,5,0",
+    "scss/selector-no-union-class-name": null,
+    "scss/at-extend-no-missing-placeholder": null,
+    "scss/no-global-function-names": null,
+    "no-descending-specificity": null,
+    "color-function-notation": null
+  }
+}

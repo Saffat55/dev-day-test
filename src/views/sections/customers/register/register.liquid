@@ -1,0 +1,65 @@
+{{ 'register.css' | asset_url | stylesheet_tag }}
+
+<div class="account-form">
+  <div class="container">
+    <div class="account-form__content text-center">
+      <div class="form-vertical">
+        {% form 'create_customer', data-validation-required: '' %}
+          <h1>{{ 'customer.register.title' | t }}</h1>
+
+          <div class="form-input-group" data-form-input-group>
+            <label for="firstName">{{ 'customer.register.first_name' | t }}</label>
+            <input type="text"
+              name="customer[first_name]"
+              id="firstName"
+              data-form-input
+              {% if form.first_name %}value="{{ form.first_name }}"{% endif %}>
+          </div>
+
+          <div class="form-input-group" data-form-input-group data-required-field-wrapper>
+            <label for="email">{{ 'customer.register.email' | t }}</label>
+            <input type="email"
+              name="customer[email]"
+              id="email"
+              class="{% if form.errors contains 'email' %}input-error{% endif %}"
+              data-form-input
+              value="{% if form.email %}{{ form.email }}{% endif %}"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+              data-required-field="valid email address is required"
+              data-required-field-pattern="^\w+([.-/+/-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$">
+            <span class="validation-error">&times;</span>
+          </div>
+
+          <div class="form-input-group" data-form-input-group data-required-field-wrapper>
+            <label for="createPassword">{{ 'customer.register.password' | t }}</label>
+            <input type="password"
+              name="customer[password]"
+              id="createPassword"
+              class="{% if form.errors contains 'password' %}input-error{% endif %}"
+              data-form-input
+              data-required-field="password must be 5 or more characters"
+              data-required-field-pattern="^.{5,}">
+            <span class="validation-error">&times;</span>
+          </div>
+
+          {% if form.errors %}
+            <div class="form-errors">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <button type="submit" class="btn btn--full">{{ 'customer.register.submit' | t }}</button>
+
+          <div class="account-form__actions">
+            <p>
+              {{ 'customer.register.sign_in_message' | t }}
+              <a href="{{ routes.account_login_url }}" title="{{ 'customer.register.sign_in' | t }}">{{ 'customer.register.sign_in' | t }}</a>
+            </p>
+          </div>
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</div>

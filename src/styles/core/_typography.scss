@@ -1,0 +1,293 @@
+/* ============================================================================
+  Typography
+============================================================================== */
+
+body,
+input,
+textarea,
+button,
+select,
+label {
+  color: $color-body-text;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  line-height: 1.6;
+  text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  margin: 0 0 8px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+
+  a {
+    font-weight: inherit;
+    text-decoration: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+small,
+span {
+  &::selection {
+    background: $color-selection;
+    color: $color-white;
+  }
+}
+
+p {
+  margin: 0 0 ($gutter / 2) 0;
+}
+
+em {
+  font-style: italic;
+}
+
+b,
+strong {
+  font-weight: 600;
+}
+
+sup,
+sub {
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* ============================================================================
+  Heading Sizes
+============================================================================== */
+
+/* H1 */
+@mixin h1 {
+  @include typography(72, 72);
+}
+
+@mixin h1-md {
+  @include typography(72, 72);
+}
+
+@mixin h1-lg {
+  @include typography(104, 104);
+}
+
+/* H2 */
+@mixin h2 {
+  @include typography(54, 54);
+}
+
+@mixin h2-md {
+  @include typography(54, 54);
+}
+
+@mixin h2-lg {
+  @include typography(80, 80);
+}
+
+/* H3 */
+@mixin h3 {
+  @include typography(36, 36);
+}
+
+@mixin h3-lg {
+  @include typography(54, 54);
+}
+
+/* H4 */
+@mixin h4 {
+  @include typography(24, 24);
+}
+
+@mixin h4-lg {
+  @include typography(36, 36);
+}
+
+/* H5 */
+@mixin h5 {
+  text-transform: uppercase;
+  @include typography(20, 20);
+}
+
+@mixin h5-lg {
+  text-transform: uppercase;
+  @include typography(24, 24);
+}
+
+/* ============================================================================
+  Headings
+============================================================================== */
+
+/* H1 */
+.heading-1,
+h1 {
+  @include h1;
+
+  @include media-query($min, $medium) {
+    @include h1-md;
+  }
+
+  @include media-query($min, $large) {
+    @include h1-lg;
+  }
+}
+
+/* H2 */
+.heading-2,
+h2 {
+  @include h2;
+
+  @include media-query($min, $medium) {
+    @include h2-md;
+  }
+
+  @include media-query($min, $large) {
+    @include h2-lg;
+  }
+}
+
+/* H3 */
+.heading-3,
+h3 {
+  @include h3;
+
+  @include media-query($min, $large) {
+    @include h3-lg;
+  }
+}
+
+/* H4 */
+.heading-4,
+h4 {
+  @include h4;
+
+  @include media-query($min, $large) {
+    @include h4-lg;
+  }
+}
+
+/* H5 */
+.heading-5,
+h5 {
+  @include h5;
+
+  @include media-query($min, $large) {
+    @include h5-lg;
+  }
+}
+
+/* ============================================================================
+  Tablet Headings
+============================================================================== */
+
+/* H1 */
+.heading-md-1 {
+  @include media-query($min, $medium) {
+    @include h1-md;
+  }
+
+  @include media-query($min, $large) {
+    @include h1-lg;
+  }
+}
+
+/* H2 */
+.heading-md-2 {
+  @include media-query($min, $medium) {
+    @include h2-md;
+  }
+
+  @include media-query($min, $large) {
+    @include h2-lg;
+  }
+}
+
+/* ============================================================================
+  Desktop Headings
+============================================================================== */
+
+/* H1 */
+.heading-lg-1 {
+  @include media-query($min, $large) {
+    @include h1-lg;
+  }
+}
+
+/* H2 */
+.heading-lg-2 {
+  @include media-query($min, $large) {
+    @include h2-lg;
+  }
+}
+
+/* H3 */
+.heading-lg-3 {
+  @include media-query($min, $large) {
+    @include h3-lg;
+  }
+}
+
+/* H4 */
+.heading-lg-4 {
+  @include media-query($min, $large) {
+    @include h4-lg;
+  }
+}
+
+/* H5 */
+.heading-lg-5 {
+  @include media-query($min, $large) {
+    @include h5-lg;
+  }
+}
+
+/* ============================================================================
+  Body
+============================================================================== */
+@mixin body {
+  @include typography(16, 24);
+}
+
+.p,
+p {
+  @include body;
+}
+
+/* ============================================================================
+  Body
+============================================================================== */
+@mixin body-small {
+  @include typography(14, 14);
+}
+
+.p--small,
+small {
+  @include body-small;
+}
+
+/* ============================================================================
+  Body Large
+============================================================================== */
+@mixin body-large {
+  @include typography(20, 30);
+}
+
+.p--large {
+  @include body-large;
+}

@@ -1,0 +1,22 @@
+{
+    "javascript.format.enable": false,
+    "javascript.validate.enable": false,
+    "standard.enable": true,
+    "standard.usePackageJson": true,
+    "standard.autoFixOnSave": true,
+    "standard.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.stylelint": true,
+    },
+    "editor.formatOnSave": false,
+    "stylelint.validate": ["css", "scss"],
+    "prettier.ignorePath": ".prettierignore",
+    "terminal.integrated.altClickMovesCursor": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "html-css-class-completion.includeGlobPattern": "dist/assets/**/*.{css,scss,sass}"
+  }

@@ -1,0 +1,2 @@
+{%- capture layout_styles -%}{{ layout }}.css{%- endcapture -%}
+{{ layout_styles | asset_url | stylesheet_tag: preload: true }}

@@ -1,0 +1,24 @@
+<article class="article">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      {% if article.image %}
+        {% render 'responsive-image' with
+          image: article.image,
+          max_width: 1024,
+          max_height: 1024
+        %}
+      {% endif %}
+
+      <h1>{{ article.title }}</h1>
+
+      {% capture date %}{{ article.published_at | time_tag: format: 'month_day_year' }}{% endcapture %}
+      <p>{{ 'blogs.article.author_on_date_html' | t: author: article.author, date: date }}</p>
+
+      <div class="rte">
+        {{ article.content }}
+      </div>
+    </div>
+  </div>
+</article>
+
+{% render 'schema-article' %}
