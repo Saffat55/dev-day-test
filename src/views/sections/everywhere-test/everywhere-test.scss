@@ -1,0 +1,16 @@
+// Helpers
+@import '~@styles/helpers/variables';
+@import '~@styles/helpers/mixins';
+@import '~@styles/helpers/functions';
+
+/* ============================================================================
+  Everywhere Test
+============================================================================== */
+
+.everywhere-test {
+  display: flex;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--everywhere-color, #36c1ff);
+}

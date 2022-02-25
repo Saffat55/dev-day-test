@@ -1,0 +1,80 @@
+<script src="{{ 'account.js' | asset_url }}" defer="defer"></script>
+{{ 'account.css' | asset_url | stylesheet_tag }}
+
+<div class="account">
+  <div class="wrapper">
+    <h1 class="text-center">{{ 'customer.account.order_history' | t }}</h1>
+
+    {% capture account_dropdown_content %}
+      <option value="{{ routes.account_url }}" {% if request.path == routes.account_url or request.path contains 'orders' %}selected{% endif %}>{{ 'customer.orders.title' | t }}</option>
+      <option value="{{ routes.account_addresses_url }}" {% if request.path == routes.account_addresses_url %}selected{% endif %}>{{ 'customer.addresses.title' | t }}</option>
+      <option value="{{ routes.account_logout_url }}">{{ 'layout.customer.log_out' | t }}</option>
+    {% endcapture %}
+
+    <div class="medium-up--hide">
+      {% render 'custom-dropdown' with
+        dropdown_content: account_dropdown_content,
+        attrs: 'data-account-page-selector'
+      %}
+    </div>
+
+    <div class="grid">
+      <div class="grid__item medium-up--8">
+        <div class="account__orders" data-account-dashboard-orders>
+          {% if customer.orders.size != 0 %}
+            {% for order in customer.orders %}
+              <div class="account__order{% if forloop.first %} active{% endif %}" data-account-dashboard-order>
+                <button class="account__order-toggle medium-up--hide" data-account-dashboard-order-toggle>
+                  <span>{{ 'customer.orders.order_number' | t }}&nbsp;{{ order.order_number }}</span>
+                  {%- render 'icon-plus' -%}
+                  {%- render 'icon-minus' -%}
+                </button>
+
+                <div class="account__order-info">
+                  <div class="account__order-image">
+                    {% assign order_product = order.line_items[0].product %}
+                    <a href="{{ order_product.url }}" title="{{ order_product.title }}" aria-label="{{ order_product.title }}">
+                      <img src="{{ order_product.featured_image | img_url: '120x' }}" class="lazyload" alt="{{ order_product.title }}">
+                    </a>
+                  </div>
+
+                  <div class="account__order-details">
+                    <p class="small--hide">{{ 'customer.orders.order_number' | t }}&nbsp;{{ order.order_number }}</p>
+                    <p><strong>{{ 'customer.orders.date' | t }}</strong>&nbsp;{{ order.created_at | date: '%b, %d, %Y' }}</p>
+                    <p><strong>{{ 'customer.orders.status' | t }}</strong>&nbsp;{{ order.fulfillment_status_label }}</p>
+                    <p class="account__order-total"><strong>{{ 'customer.orders.total' | t }}</strong>&nbsp;{{ order.total_price | money }}</p>
+
+                    <div class="account__order-actions">
+                      <a href="{{ order.customer_url }}" title="{{ 'customer.orders.details' | t }}">{{ 'customer.orders.details' | t }}</a>
+
+                      {% if order.order_status_url != blank %}
+                        <div class="account__order-track">
+                          <a href="{{ order.order_status_url }}" target="_blank" title="{{ 'customer.orders.track' | t }}">
+                            {{- 'customer.orders.track' | t -}}
+                          </a>
+                        </div>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="account__empty">
+              <p>{{ 'customer.orders.none' | t }}</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="grid__item medium-up--4">
+        <div class="account__details">
+          <h3>{{ 'customer.account.details' | t }}</h3>
+          {{ customer.default_address | format_address }}
+          <a href="{{ routes.account_addresses_url }}" title="{{ 'customer.account.view_addresses' | t }}">{{ 'customer.account.view_addresses' | t }} ({{ customer.addresses_count }})</a>
+          <a href="{{ routes.account_logout_url }}" class="medium-down--hide" title="{{ 'layout.customer.log_out' | t }}">{{ 'layout.customer.log_out' | t }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

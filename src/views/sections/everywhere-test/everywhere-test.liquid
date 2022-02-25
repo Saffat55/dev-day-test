@@ -1,0 +1,51 @@
+<script src="{{ 'everywhere-test.js' | asset_url }}" defer="defer"></script>
+{{ 'everywhere-test.css' | asset_url | stylesheet_tag }}
+
+<div class="wrapper">
+  <div class="everywhere-test {{ section.id }}">
+    {{ section.settings.title }}
+  </div>
+</div>
+
+<style>
+  .{{ section.id }} {
+    --everywhere-color: {{ section.settings.color }};
+  }
+</style>
+
+{% schema %}
+  {
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Everywhere Test"
+      },
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Color"
+      }
+    ],
+    "blocks": [],
+    "presets": [
+      {
+        "name": "Everywhere Test - Blue",
+        "settings": {
+          "title": "Blue Preset",
+          "color": "#36c1ff"
+        },
+        "blocks": []
+      },
+      {
+        "name": "Everywhere Test - Red",
+        "settings": {
+          "title": "Red Preset",
+          "color": "#FF2037"
+        },
+        "blocks": []
+      }
+    ]
+  }
+{% endschema %}
