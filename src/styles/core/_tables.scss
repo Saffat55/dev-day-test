@@ -1,0 +1,77 @@
+/* ============================================================================
+  Tables
+============================================================================== */
+
+table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: $gutter / 2;
+  border: 1px solid $color-border;
+  text-align: left;
+}
+
+.table-wrapper {
+  max-width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@include media-query($max, $pre-medium) {
+  .responsive-table {
+    width: 100%;
+
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+    }
+
+    // IE9 table layout fixes
+    tr,
+    td {
+      width: 100%;
+      float: left;
+      clear: both;
+    }
+
+    th,
+    td {
+      display: block;
+      margin: 0;
+      padding: $gutter / 2;
+      text-align: right;
+    }
+
+    td::before {
+      content: attr(data-label);
+      padding-right: 10px;
+      float: left;
+      text-align: center;
+    }
+  }
+
+  // Add a keyline between rows
+  .responsive-table-row + .responsive-table-row,
+  tfoot > .responsive-table-row:first-child {
+    position: relative;
+    margin-top: 10px;
+    padding-top: $gutter / 2;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: $gutter / 2;
+      left: $gutter / 2;
+      border-bottom: 1px solid $color-border;
+    }
+  }
+}

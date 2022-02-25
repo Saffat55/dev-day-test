@@ -1,0 +1,270 @@
+/* ============================================================================
+  Grid setup
+============================================================================== */
+
+.grid {
+  @include clearfix;
+}
+
+$class-type: unquote('.');
+
+@mixin grid-media-query($media-query) {
+  @each $breakpoint in $breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+
+    @if $media-query == $name and $declaration {
+      @media only screen and #{$declaration} {
+        @content;
+      }
+    }
+  }
+}
+
+#{$class-type}grid {
+  margin-left: -$gutter;
+  padding: 0;
+  list-style: none;
+}
+
+#{$class-type}grid__item {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 1px;
+  padding-left: $gutter;
+  float: left;
+  vertical-align: top;
+}
+
+/* ============================================================================
+  Reverse grid
+============================================================================== */
+
+#{$class-type}grid--rev {
+  direction: rtl;
+  text-align: left;
+
+  > #{$class-type}grid__item {
+    direction: ltr;
+    float: right;
+    text-align: left;
+  }
+}
+
+/* ============================================================================
+  Gutterless grid
+============================================================================== */
+
+#{$class-type}grid--full {
+  margin-left: 0;
+
+  > #{$class-type}grid__item {
+    padding-left: 0;
+  }
+}
+
+/* ============================================================================
+  Table grid
+============================================================================== */
+
+#{$class-type}grid--table {
+  @include media-query($min, $medium) {
+    display: table;
+    width: 100%;
+    margin: 0;
+
+    > #{$class-type}grid__item {
+      display: table-cell;
+      padding-left: 0;
+      float: none;
+      vertical-align: middle;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* ============================================================================
+  Grid widths
+============================================================================== */
+
+@mixin device-type($namespace: '') {
+  #{$class-type}#{$namespace}12 {
+    width: 100%;
+  }
+  #{$class-type}#{$namespace}11 {
+    width: 91.666%;
+  }
+  #{$class-type}#{$namespace}10 {
+    width: 83.333%;
+  }
+  #{$class-type}#{$namespace}9 {
+    width: 75%;
+  }
+  #{$class-type}#{$namespace}8 {
+    width: 66.666%;
+  }
+  #{$class-type}#{$namespace}7 {
+    width: 58.333%;
+  }
+  #{$class-type}#{$namespace}6 {
+    width: 50%;
+  }
+  #{$class-type}#{$namespace}5 {
+    width: 41.666%;
+  }
+  #{$class-type}#{$namespace}4 {
+    width: 33.333%;
+  }
+  #{$class-type}#{$namespace}3 {
+    width: 25%;
+  }
+  #{$class-type}#{$namespace}2 {
+    width: 16.666%;
+  }
+  #{$class-type}#{$namespace}1 {
+    width: 8.333%;
+  }
+}
+
+/* ============================================================================
+  Uniform grid
+============================================================================== */
+
+@mixin clearfix-helper($namespace: '') {
+  #{$class-type}grid--uniform {
+    #{$class-type}#{$namespace}6:nth-child(2n + 1),
+    #{$class-type}#{$namespace}4:nth-child(3n + 1),
+    #{$class-type}#{$namespace}3:nth-child(4n + 1),
+    #{$class-type}#{$namespace}2:nth-child(6n + 1),
+    #{$class-type}#{$namespace}1:nth-child(12n + 1) {
+      clear: both;
+    }
+  }
+}
+
+/* ============================================================================
+  Helpers
+============================================================================== */
+
+/* stylelint-disable */
+@mixin device-helper($namespace: '') {
+  #{$class-type}#{$namespace}show {
+    display: block !important;
+  }
+  #{$class-type}#{$namespace}hide {
+    display: none !important;
+  }
+
+  #{$class-type}#{$namespace}text-left {
+    text-align: left !important;
+  }
+  #{$class-type}#{$namespace}text-right {
+    text-align: right !important;
+  }
+  #{$class-type}#{$namespace}text-center {
+    text-align: center !important;
+  }
+
+  #{$class-type}#{$namespace}left {
+    float: left !important;
+  }
+  #{$class-type}#{$namespace}right {
+    float: right !important;
+  }
+}
+
+.show {
+  display: block !important;
+}
+.hide {
+  display: none !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.left {
+  float: left !important;
+}
+.right {
+  float: right !important;
+}
+/* stylelint-enable */
+
+/* ============================================================================
+  Generate responsive grid classes based on breakpoints
+============================================================================== */
+
+@each $name in $breakpoint-has-widths {
+  @include grid-media-query($name) {
+    @include device-type('#{$name}--');
+    @include device-helper('#{$name}--');
+    @include clearfix-helper('#{$name}--');
+  }
+}
+
+/* ============================================================================
+  Grid push classes
+============================================================================== */
+
+@mixin push-setup($namespace: '') {
+  #{$class-type}push--#{$namespace}12 {
+    left: 100%;
+  }
+  #{$class-type}push--#{$namespace}11 {
+    left: 91.666%;
+  }
+  #{$class-type}push--#{$namespace}10 {
+    left: 83.333%;
+  }
+  #{$class-type}push--#{$namespace}9 {
+    left: 75%;
+  }
+  #{$class-type}push--#{$namespace}8 {
+    left: 66.666%;
+  }
+  #{$class-type}push--#{$namespace}7 {
+    left: 58.333%;
+  }
+  #{$class-type}push--#{$namespace}6 {
+    left: 50%;
+  }
+  #{$class-type}push--#{$namespace}5 {
+    left: 41.666%;
+  }
+  #{$class-type}push--#{$namespace}4 {
+    left: 33.333%;
+  }
+  #{$class-type}push--#{$namespace}3 {
+    left: 25%;
+  }
+  #{$class-type}push--#{$namespace}2 {
+    left: 16.666%;
+  }
+  #{$class-type}push--#{$namespace}1 {
+    left: 8.333%;
+  }
+}
+
+[class*='push--'] {
+  position: relative;
+}
+
+@each $name in $breakpoint-has-push {
+  @include grid-media-query($name) {
+    @include push-setup('#{$name}--');
+  }
+}

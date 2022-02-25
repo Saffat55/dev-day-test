@@ -1,0 +1,8 @@
+# Do not share these tokens
+
+# Get your Personal Access Token from 'https://github.com/settings/tokens'
+# Ensure [repo (Full control of private repositories)] is checked
+GITHUB_TOKEN: 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
+
+#Get your Figma Token from Account -> Personal access tokens
+FIGMA_TOKEN: 306248-caf35990-c7ee-4bb0-867a-07b9ebf6e2cc
