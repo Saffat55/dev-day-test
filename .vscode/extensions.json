@@ -1,0 +1,11 @@
+{
+    "recommendations": [
+        "chenxsan.vscode-standardjs",
+        "coenraads.bracket-pair-colorizer-2",
+        "neilding.language-liquid",
+        "esbenp.prettier-vscode",
+        "stylelint.vscode-stylelint",
+        "eamodio.gitlens",
+        "mrmlnc.vscode-scss"
+    ]
+}

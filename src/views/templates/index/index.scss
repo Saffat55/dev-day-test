@@ -1,0 +1,10 @@
+// Helpers
+@import '~@styles/helpers/variables';
+@import '~@styles/helpers/mixins';
+@import '~@styles/helpers/functions';
+
+// Vendor
+@import '~swiper/css/swiper.min';
+
+// Sections
+@import '~@sections/hero/hero';

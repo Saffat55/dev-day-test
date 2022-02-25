@@ -1,0 +1,102 @@
+/* ============================================================================
+  Breakpoint mixin
+============================================================================== */
+
+$min: min-width;
+$max: max-width;
+
+@mixin media-query($constraint_, $viewport1_, $viewport2_: null) {
+  $constraint: $constraint_;
+  $viewport1: $viewport1_;
+  $viewport2: $viewport2_;
+  @if type-of($constraint_) == number {
+    $viewport1: $constraint_;
+    $viewport2: $viewport1_;
+    $constraint: null;
+  }
+  @if $constraint == $min {
+    @media screen and ($min: $viewport1) {
+      @content;
+    }
+  } @else if $constraint == $max {
+    @media screen and ($max: $viewport1) {
+      @content;
+    }
+  } @else {
+    @media screen and ($min: $viewport1) and ($max: $viewport2) {
+      @content;
+    }
+  }
+}
+
+/* ============================================================================
+  Clearfix mixin
+============================================================================== */
+
+@mixin clearfix() {
+  *zoom: 1;
+
+  &::after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+
+/* ============================================================================
+  Visually hidden mixin
+============================================================================== */
+
+@mixin visually-hidden() {
+  position: absolute !important; // stylelint-disable-line
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+}
+
+@mixin visually-shown($position: inherit) {
+  position: $position !important; // stylelint-disable-line
+  overflow: auto;
+  width: auto;
+  height: auto;
+  margin: 0;
+  clip: auto;
+}
+
+/* ==============================
+  Center
+=========================== */
+
+@mixin center($horizontal: true, $vertical: true) {
+  position: absolute;
+  @if $horizontal and $vertical {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  } @else if $horizontal {
+    left: 50%;
+    transform: translate(-50%, 0);
+  } @else if $vertical {
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+/* ==============================
+  No <br>
+=========================== */
+
+@mixin no-br($min-max: $min, $breakpoint: $medium) {
+  @include media-query($min-max, $breakpoint) {
+    br {
+      content: ' ';
+    }
+    br::after {
+      content: ' ';
+    }
+  }
+}

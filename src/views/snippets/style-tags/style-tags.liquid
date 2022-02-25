@@ -1,0 +1,16 @@
+{%- assign webpack_env = "WEBPACK_ENVIRONMENT" -%}
+{%- assign webpack_templates = "WEBPACK_CUSTOM_TEMPLATES" | split: ',' -%}
+
+{%- capture layout_styles -%}{{ layout }}.css{%- endcapture -%}
+{{ layout_styles | asset_url | stylesheet_tag }}
+
+{% comment %} Only load css assets when not in dev as HMR takes care of styles {% endcomment %}
+{%- if template and webpack_env != 'development' -%}
+  {%- for custom_template in webpack_templates -%}
+    {%- if template contains custom_template -%}
+      <link type="text/css" href="{{ custom_template | append: '.css' | asset_url }}" rel="stylesheet">
+    {%- else -%}
+      <link rel="prefetch" href="{{ custom_template | append: '.css' | asset_url }}" as="style">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

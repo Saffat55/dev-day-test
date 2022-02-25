@@ -1,0 +1,121 @@
+/* ============================================================================
+  Drawers
+============================================================================== */
+
+.drawer {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  padding: 0 25px;
+  background-color: $color-drawer-background;
+  color: $color-drawer-text;
+  transition: all $transition-drawer;
+
+  @include media-query($min, $large) {
+    width: 450px;
+  }
+
+  &.drawer--left {
+    left: -300px;
+
+    @include media-query($min, $large) {
+      left: -450px;
+    }
+
+    &.active {
+      left: 0;
+    }
+  }
+
+  &.drawer--right {
+    right: -300px;
+
+    @include media-query($min, $large) {
+      right: -450px;
+    }
+
+    &.active {
+      right: 0;
+    }
+  }
+
+  a {
+    color: $color-drawer-text;
+
+    &:hover,
+    &:focus {
+      color: darken($color-drawer-text, 15%);
+    }
+  }
+
+  .icon {
+    color: $color-drawer-text;
+  }
+}
+
+.drawer__outside {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.drawer__inside {
+  position: relative;
+  display: none;
+  height: 100%;
+  padding: 0 35px 25px 0;
+  margin: 0 -35px 0 0;
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  .drawer.active & {
+    display: block;
+  }
+}
+
+.drawer__inside::-webkit-scrollbar {
+  width: 0;
+}
+
+.drawer__header {
+  height: 70px;
+}
+
+.drawer__close {
+  height: 70px;
+
+  svg path {
+    fill: $color-drawer-text;
+  }
+}
+
+// Disable scrolling when drawer is active
+html,
+body {
+  &.drawer-active {
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+// Site overlay when drawer is active
+.site-overlay {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $color-site-overlay;
+  opacity: 0;
+  transition: all $transition-drawer;
+  visibility: hidden;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
