@@ -1,0 +1,28 @@
+{
+  "extends": [
+    "@shopify/stylelint-plugin",
+    "stylelint-config-prettier",
+    "stylelint-config-idiomatic-order"
+  ],
+  "rules": {
+    "color-no-hex": null,
+    "declaration-empty-line-before": null,
+    "selector-class-pattern": null,
+    "selector-no-qualifying-type": null,
+    "selector-max-type": null,
+    "max-nesting-depth": 5,
+    "selector-max-class": 5,
+    "selector-max-combinators": 5,
+    "selector-max-compound-selectors": 5,
+    "selector-max-specificity": "0,5,0",
+    "at-rule-blacklist": null,
+    "declaration-property-value-blacklist": null,
+    "declaration-property-unit-blacklist": null,
+    "declaration-property-value-whitelist": null,
+    "function-url-scheme-whitelist": null,
+    "property-blacklist": null,
+    "unit-blacklist": null,
+    "scss/selector-no-union-class-name": null,
+    "scss/at-extend-no-missing-placeholder": null
+  }
+}

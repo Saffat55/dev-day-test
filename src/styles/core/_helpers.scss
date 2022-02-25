@@ -1,0 +1,107 @@
+/* ============================================================================
+  Helper classes
+============================================================================== */
+
+.display-table {
+  display: table;
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+}
+
+.display-table-cell {
+  display: table-cell;
+  width: 100%;
+  float: none;
+  vertical-align: middle;
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.js-focus-hidden:focus {
+  outline: none;
+}
+
+.label-hidden {
+  @include visually-hidden;
+
+  // No placeholders, so force show labels
+  .no-placeholder & {
+    @include visually-shown;
+  }
+}
+
+.visually-shown {
+  @include visually-shown;
+}
+
+// Skip to content button
+// Overrides .visually-hidden when focused
+.skip-link:focus {
+  @include visually-shown(absolute);
+  z-index: 10000;
+  padding: $gutter / 2;
+  transition: none;
+}
+
+// Hide outline on focus for elements which are given focus by JS
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+/* ==============================
+  No <br>
+=========================== */
+
+.medium-up--no-br {
+  @include media-query($min, $medium) {
+    br {
+      content: ' ';
+    }
+    br::after {
+      content: ' ';
+    }
+  }
+}
+
+.medium-down--no-br {
+  @include media-query($max, $medium) {
+    br {
+      content: ' ';
+    }
+    br::after {
+      content: ' ';
+    }
+  }
+}
+
+/* ==============================
+  Object-fit
+=========================== */
+
+.img-cover,
+.img-contain {
+  > img {
+    width: 100% !important; /* stylelint-disable-line declaration-no-important */
+    height: 100% !important; /* stylelint-disable-line declaration-no-important */
+  }
+}
+
+.img-cover > img {
+  object-fit: cover;
+}
+
+.img-contain > img {
+  object-fit: contain;
+}
+
+.no-object-fit {
+  background-position: center center;
+  background-repeat: no-repeat;
+}
