@@ -1,0 +1,26 @@
+<div class="collection-item">
+  <a class="image-link" href="{{ product.url | within: collection }}" title="{{ product.title }} - {{ product.price | money }}">
+    {% render 'responsive-image' with
+      image: product.featured_image,
+      max_width: 600,
+      max_height: 600
+    %}
+  </a>
+
+  <h4>
+    <a href="{{ product.url | within: collection }}" title="{{ product.title }} - {{ product.price | money }}">{{ product.title }}</a>
+  </h4>
+
+  <p>
+    {% if product.available == false %}
+      {{ 'products.product.sold_out' | t }}
+    {% else %}
+      {% if product.compare_at_price > product.price %}
+        {{ product.price | money }}
+        <s>{{ product.compare_at_price | money }}</s>
+      {% else %}
+        {{ product.price | money }}
+      {% endif %}
+    {% endif %}
+  </p>
+</div>

@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@styles/*": [
+                "src/styles/*"
+            ],
+            "@scripts/*": [
+                "src/scripts/*"
+            ],
+            "@views/*": [
+                "src/views/*"
+            ],
+            "@sections/*": [
+                "src/views/sections/*"
+            ],
+            "@snippets/*": [
+                "src/views/snippets/*"
+            ],
+            "@templates/*": [
+                "src/views/templates/*"
+            ]
+        }
+    },
+    "exclude": [
+        "node_modules",
+        "dist"
+    ]
+}

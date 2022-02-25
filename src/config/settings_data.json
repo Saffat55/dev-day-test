@@ -1,0 +1,10 @@
+{
+  "current": {
+    "ajaxcart": true
+  },
+  "presets": {
+    "Default": {
+      "ajaxcart": true
+    }
+  }
+}

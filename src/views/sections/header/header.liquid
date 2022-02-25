@@ -1,0 +1,84 @@
+<header class="site-header" role="banner" aria-label="Site Header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2 d-lg-none">
+        <button type="button" aria-label="Menu" data-drawer-toggle="menu">
+          {% render 'icon-menu' %}
+        </button>
+      </div>
+
+      <div class="col-8 col-lg-6">
+        <div class="site-header__logo">
+          <a href="{{ routes.root_url }}" title="{{ shop.name }} Logo">
+            {% if section.settings.logo != blank %}
+              <img src="{{ section.settings.logo | img_url: '1024x1024' }}" alt="{{ shop.name }} Logo">
+            {% else %}
+              <h2>{{ shop.name }}</h2>
+            {% endif %}
+          </a>
+        </div>
+      </div>
+
+      <div class="col-2 col-lg-6 text-right">
+        {% if settings.ajaxcart == true %}
+          <button type="button" aria-label="Cart" data-drawer-toggle="cart">
+            {% render 'icon-cart' %}
+          </button>
+        {% else %}
+          <a href="{{ routes.cart_url }}" title="{{ 'cart.general.title' | t }}">
+            {% render 'icon-cart' %}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="site-nav d-medium-flex" role="navigation">
+  <div class="container">
+    <ul>
+      {% for link in linklists[section.settings.menu].links %}
+        {% assign child_list_handle = link.title | handleize %}
+        {% if linklists[child_list_handle].links != blank %}
+          <li class="{% if link.active %}site-nav--has-dropdown site-nav--active{% else %}site-nav--has-dropdown{% endif %}" tabindex="0">
+            <a class="site-nav__link {% if forloop.first %}site-nav__link--first{% endif %}" href="{{ link.url }}" title="{{ link.title }}">
+              {{ link.title }}
+              {% render 'icon-chevron-down' %}
+            </a>
+
+            <ul class="site-nav__dropdown btn">
+              {% for childlink in linklists[child_list_handle].links %}
+                <li {% if childlink.active %} class="site-nav--active"{% endif %}>
+                  <a class="site-nav__link" href="{{ childlink.url }}" title="{{ childlink.title }}">{{ childlink.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% else %}
+          <li {% if link.active %} class="site-nav--active"{% endif %}>
+            <a class="site-nav__link {% if forloop.first %}site-nav__link--first{% endif %}" href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</nav>
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "Menu",
+        "default": "main-menu"
+      }
+    ]
+  }
+{% endschema %}

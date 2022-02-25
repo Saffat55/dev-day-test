@@ -1,0 +1,76 @@
+/* ============================================================================
+  Breakpoint and grid variables
+============================================================================== */
+
+$all: 1px;
+$small: 375px;
+$small-medium: 550px;
+$medium: 750px;
+$large: 1025px;
+$xlarge: 1400px;
+$xxlarge: 2000px;
+$viewport-increment: 1px;
+$pre-medium: $medium - $viewport-increment;
+$pre-large: $large - $viewport-increment;
+$site-width: 1200px;
+$gutter: 20px;
+$wrapper-padding: 20px;
+$border-radius: 0;
+
+/* ============================================================================
+  Color variables
+============================================================================== */
+
+// Primary colors
+$color-primary: #000;
+$color-selection: #000;
+$color-btn-primary: #000;
+$color-btn-primary-text: #fff;
+
+// Secondary colors
+$color-secondary: #ccc;
+$color-btn-secondary: #ccc;
+$color-btn-secondary-text: #fff;
+
+// General colors
+$color-white: #fff;
+$color-black: #000;
+
+// Body text color
+$color-body-text: #000;
+
+// Drawer colors
+$color-drawer-background: #fff;
+$color-drawer-text: #000;
+$color-site-overlay: rgba(0, 0, 0, 75%);
+
+// Modal
+$color-modal-background: rgba(0, 0, 0, 75%);
+
+// Navigation dropdown color
+$color-dropdown: #fff;
+
+// Border colors
+$color-border: #e1e1e1;
+
+// Helper colors
+$color-disabled: #f1f1f1;
+$color-error: #c31c1c;
+$color-success: #23ab42;
+
+/* ============================================================================
+  Transition variables
+============================================================================== */
+
+$transition-primary: 0.2s cubic-bezier(0.46, 0.01, 0.32, 1);
+$transition-drawer: 0.3s cubic-bezier(0.46, 0.01, 0.32, 1);
+
+/* ============================================================================
+  Font variables
+============================================================================== */
+
+/*
+  @font-face import your font families in /views/snippets/style-fonts/style-fonts.liquid then define global variables for them here
+
+  $font-family: 'Font Family', helvetica, arial, sans-serif;
+*/
