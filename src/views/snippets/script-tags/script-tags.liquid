@@ -1,0 +1,37 @@
+{%- assign webpack_env = "WEBPACK_ENVIRONMENT" -%}
+{%- assign webpack_public_path = "WEBPACK_PUBLIC_PATH" -%}
+{%- assign webpack_templates = "WEBPACK_CUSTOM_TEMPLATES" | split: ',' -%}
+
+{% comment %} LAYOUT {% endcomment %}
+{%- capture layout_js -%}{{ layout }}.js{%- endcapture -%}
+
+{%- capture layout_path -%}
+  {%- if webpack_env == 'development' -%}
+    {{ webpack_public_path }}assets/{{layout_js}}
+  {%- else -%}
+    {{ layout_js | asset_url }}
+  {%- endif -%}
+{%- endcapture -%}
+
+<script type="text/javascript" src="{{ layout_path }}" defer="defer"></script>
+
+{% comment %} TEMPLATE {% endcomment %}
+{%- if template -%}
+  {%- for webpack_template in webpack_templates -%}
+    {%- capture template_js -%}{{ webpack_template }}.js{%- endcapture -%}
+
+    {%- capture template_path -%}
+      {%- if webpack_env == 'development' -%}
+        {{ webpack_public_path }}assets/{{template_js}}
+      {%- else -%}
+        {{ template_js | asset_url }}
+      {%- endif -%}
+    {%- endcapture -%}
+
+    {%- if template contains webpack_template -%}
+      <script type="text/javascript" src="{{ template_path }}" defer="defer"></script>
+    {%- else -%}
+      <link rel="prefetch" href="{{ template_path }}" as="script">
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

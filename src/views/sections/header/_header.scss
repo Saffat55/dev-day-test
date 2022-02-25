@@ -1,0 +1,48 @@
+/* ============================================================================
+  Header
+============================================================================== */
+
+.site-header {
+  position: relative;
+  padding: $gutter 0;
+
+  h2 {
+    margin-bottom: 0;
+  }
+
+  .grid--table {
+    display: table;
+    width: 100%;
+    margin: 0;
+
+    > .grid__item {
+      display: table-cell;
+      padding-left: 0;
+      float: none;
+      vertical-align: middle;
+    }
+  }
+
+  button,
+  a {
+    display: inline-block;
+    line-height: 0;
+    vertical-align: middle;
+  }
+}
+
+.site-header__logo {
+  max-width: 200px;
+  margin: 0 auto;
+  text-align: center;
+
+  @include media-query($min, $large) {
+    margin: 0;
+    text-align: left;
+  }
+
+  a,
+  img {
+    display: block;
+  }
+}

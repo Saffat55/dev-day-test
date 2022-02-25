@@ -1,0 +1,58 @@
+<form
+  id="newsletter-form-{{ section.id }}"
+  class="newsletter-form klaviyo_gdpr_embed_{{ list_id }}"
+  action="//manage.kmail-lists.com/subscriptions/subscribe"
+  data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe"
+  method="GET" target="_blank" role="region" aria-label="Newsletter Signup"
+  data-newsletter-form data-validation-required novalidate="novalidate">
+  <input type="hidden" name="g" value="{{ list_id }}">
+  <input type="hidden" name="$fields" value="$consent">
+  <input type="hidden" name="$list_fields" value="$consent">
+  <div class="newsletter-form__container klaviyo_field_group">
+    <div class="newsletter-form__content" data-required-field-wrapper>
+      <input type="email"
+        id="k_id_email"
+        class="border-thick"
+        placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+        name="email"
+        autocorrect="off"
+        autocapitalize="off"
+        data-newsletter-form-email
+        data-required-field="Valid email is required"
+        data-required-field-pattern="^\w+([.-/+/-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$">
+      <span></span>
+    </div>
+    <div class="newsletter-form__submit">
+      <button type="submit"
+        class="btn klaviyo_submit_button"
+        title="{{ 'general.newsletter_form.submit' | t }}"
+        data-newsletter-form-submit>
+        {{- 'general.newsletter_form.submit' | t -}}
+      </button>
+    </div>
+  </div>
+  <div class="klaviyo_messages">
+    <div class="success_message" style="display: none;">
+      <p>{{ 'general.newsletter_form.success_message' | t }}</p>
+    </div>
+    <div class="error_message" style="display: none;"></div>
+  </div>
+</form>
+
+<script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+<script type="text/javascript">
+  KlaviyoSubscribe.attachToForms('#newsletter-form-{{ section.id }}', {
+    hide_form_on_success: false,
+    custom_success_message: true,
+    extra_properties: {
+      $source: '$embed',
+      $method_type: "Klaviyo Form",
+      $method_id: 'embed'
+    },
+    success: function () {
+      const form = document.querySelector('#newsletter-form-{{ section.id }}');
+      form.querySelector('[data-newsletter-form-submit]').disabled = true;
+      form.querySelector('[data-newsletter-form-email]').disabled = true;
+    }
+  });
+</script>

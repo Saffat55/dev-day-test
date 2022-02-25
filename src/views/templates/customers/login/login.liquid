@@ -1,0 +1,106 @@
+<div class="account-form">
+  <div class="wrapper">
+    <div class="account-form__content text-center">
+      <div class="form-success hide" data-recover-password-success-message>
+        {{ 'customer.recover_password.success' | t }}
+      </div>
+
+      <div class="form-vertical" data-customer-login-form>
+        {% form 'customer_login', data-validation-required: '' %}
+          <h1>{{ 'customer.login.title' | t }}</h1>
+
+          <div class="form-input-group" data-form-input-group data-required-field-wrapper>
+            <label for="customerEmail">{{ 'customer.login.email' | t }}</label>
+            <input type="email"
+              name="customer[email]"
+              id="customerEmail"
+              class="{% if form.errors contains 'email' %}input-error{% endif %}"
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+              data-required-field="valid email address is required"
+              data-form-input
+              data-required-field-pattern="^\w+([.-/+/-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$">
+              <span class="validation-error">&times;</span>
+          </div>
+
+          {% if form.password_needed %}
+            <div class="form-input-group" data-form-input-group data-required-field-wrapper>
+              <label for="customerPassword">{{ 'customer.login.password' | t }}</label>
+              <input type="password"
+                name="customer[password]"
+                id="customerPassword"
+                class="{% if form.errors contains 'password' %}input-error{% endif %}"
+                data-form-input
+                data-required-field="password must be 5 or more characters"
+                data-required-field-pattern="^.{5,}">
+              <span class="validation-error">&times;</span>
+            </div>
+          {% endif %}
+
+          {% if form.errors %}
+            <div class="form-errors">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <button type="submit" class="btn btn--full">{{ 'customer.login.login' | t }}</button>
+
+          <div class="account-form__actions">
+            <a href="{{ routes.account_register_url }}" title="{{ 'customer.login.create_account' | t }}">{{ 'customer.login.create_account' | t }}</a>
+
+            {% if form.password_needed %}
+              <a href="#recover" title="{{ 'customer.login.forgot_password' | t }}" data-show-recover-password>{{ 'customer.login.forgot_password' | t }}</a>
+            {% endif %}
+          </div>
+        {% endform %}
+      </div>
+
+      <div class="hide form-vertical" data-recover-password-form>
+        <h2>{{ 'customer.recover_password.title_html' | t }}</h2>
+
+        <p>{{ 'customer.recover_password.subtext' | t }}</p>
+
+        {% form 'recover_customer_password', data-validation-required: '' %}
+          <div class="form-input-group" data-form-input-group data-required-field-wrapper>
+            <label for="recoverEmail">{{ 'customer.recover_password.email' | t }}</label>
+            <input type="email"
+              name="email"
+              id="recoverEmail"
+              placeholder="{{ 'customer.recover_password.email' | t }}"
+              data-form-input
+              spellcheck="false"
+              autocomplete="off"
+              autocapitalize="off"
+              data-required-field="valid email address is required"
+              data-required-field-pattern="^\w+([.-/+/-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$">
+            <span class="validation-error">&times;</span>
+          </div>
+
+          {% if form.posted_successfully? %}
+            <span class="hide" data-recover-password-success></span>
+          {% elsif form.errors %}
+            <div class="form-errors">
+              {{ form.errors | default_errors }}
+            </div>
+          {% endif %}
+
+          <button type="submit" class="btn btn--full">{{ 'customer.recover_password.submit' | t }}</button>
+
+          <div class="account-form__actions">
+            <button type="button" data-hide-recover-password>{{ 'customer.recover_password.cancel' | t }}</button>
+            <a href="{{ routes.account_register_url }}" title="{{ 'layout.customer.create_account' | t }}">{{ 'layout.customer.create_account' | t }}</a>
+          </div>
+        {% endform %}
+      </div>
+
+      {% if shop.checkout.guest_login %}
+        <h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+        {% form 'guest_login' %}
+          <button type="submit" class="btn btn--full">{{ 'customer.login.guest_continue' | t }}</button>
+        {% endform %}
+      {% endif %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Organization",
+    "name": "{{ shop.name }}",
+    "description": "{{ shop.description }}",
+    {% if settings.schema_logo != blank %}
+      "logo": "{{ settings.schema_logo | img_url: 'master' }}",
+    {% endif %}
+    {% if settings.schema_same_as != blank %}
+      {% assign same_as_list = settings.schema_same_as | split : ',' %}
+      "sameAs": [
+        {% for item in same_as_list %}
+          "{{ item | strip }}"{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ],
+    {% endif %}
+    "url": "{{ shop.url }}"
+  }
+</script>

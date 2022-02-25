@@ -1,0 +1,15 @@
+{% comment %}
+  PARAMETERS
+  dropdown_content : content to appear in dropdown
+  attrs : any additional data attributes needed (optional)
+
+  USAGE
+  {% capture dropdown_content %}
+    <option value="option">Option</option>
+  {% endcapture %}
+  {% render 'custom-dropdown' with dropdown_content: content %}
+{% endcomment %}
+
+<select data-custom-dropdown data-choices {{ attrs }}>
+  {{ dropdown_content }}
+</select>
