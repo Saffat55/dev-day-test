@@ -1,0 +1,108 @@
+{% if settings.ajaxcart == true %}
+  {% layout none %}
+  <script>
+    window.location.href = '{{ routes.root_url }}?cart_redirect';
+  </script>
+{% else %}
+  <div class="cart">
+    <div data-line-item-count="{{ cart.items.size }}" data-cart-content>
+      {% if cart.item_count > 0 %}
+        <h1 class="text-center">{{ 'cart.general.title' | t }}</h1>
+
+        <form action="{{ routes.cart_url }}" method="post" novalidate>
+          <table>
+            <tbody>
+              {% for item in cart.items %}
+                <tr class="cart__item" data-line-item-key="{{ item.key }}">
+                  <td>
+                    <a class="image-link" href="{{ item.url | within: collections.all }}" title="{{ item.product.title }} - {{ item.line_price | money }}" aria-label="{{ item.product.title }} - {{ item.line_price | money }}">
+                      {% render 'responsive-image' with
+                        image: item.image,
+                        max_width: 200,
+                        max_height: 200,
+                        id_suffix: 'cart'
+                      %}
+                    </a>
+                  </td>
+
+                  <td>
+                    <h4>
+                      <a href="{{ item.url }}" title="{{ item.product.title }} - {{ item.line_price | money }}" aria-label="{{ item.product.title }} - {{ item.line_price | money }}">
+                        {{ item.product.title }}
+                      </a>
+                    </h4>
+
+                    {% unless item.variant.title contains 'Default' %}
+                      <small>{{ item.variant.title }}</small>
+                    {% endunless %}
+
+                    {% assign property_size = item.properties | size %}
+                    {% if property_size > 0 %}
+                      <small>
+                        {% for p in item.properties %}
+                          {% unless p.last == blank %}
+                            {{ p.first }}:
+                            {% if p.last contains '/uploads/' %}
+                              <a href="{{ p.last }}" title="{{ p.first }}">{{ p.last | split: '/' | last }}</a>
+                            {% else %}
+                              {{ p.last }}
+                            {% endif %}
+                            <br>
+                          {% endunless %}
+                        {% endfor %}
+                      </small>
+                    {% endif %}
+
+                    {% capture item_price %}
+                      {% if item.message and item.original_line_price > item.line_price %}
+                        <h5>
+                          <s data-line-item-original-price>{{ item.original_line_price | money }}</s>
+                          <span data-line-item-price>{{ item.line_price | money }}</span>
+                        </h5>
+                        <span>{{ item.message }}</span>
+                      {% else %}
+                        <h5 data-line-item-price>{{ item.line_price | money }}</h5>
+                      {% endif %}
+                    {% endcapture %}
+
+                    <div class="large--hide">
+                      {{ item_price }}
+                    </div>
+
+                    <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" title="{{ 'cart.general.remove' | t }} {{ item.product.title }}" aria-label="{{ 'cart.general.remove' | t }} {{ item.product.title }}" data-line-item-key="{{ item.key }}" data-line-item-remove>
+                      {{ 'cart.general.remove' | t }}
+                    </a>
+                  </td>
+
+                  <td>
+                    {% render 'quantity-selector', item: item %}
+                  </td>
+
+                  <td class="small--hide medium--hide small--text-center text-right">
+                    {{ item_price }}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <div class="cart__total small--text-center medium-up--text-right">
+            <h4>
+              <span>{{ 'cart.general.subtotal' | t }}</span>
+              <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+            </h4>
+
+            <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
+
+            <button class="btn" type="submit" name="checkout" aria-label="{{ 'cart.general.checkout' | t }}">{{ 'cart.general.checkout' | t }}</button>
+          </div>
+        </form>
+      {% else %}
+        <div class="text-center">
+          <h1>{{ 'cart.general.empty' | t }}</h1>
+          <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

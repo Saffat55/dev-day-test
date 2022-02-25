@@ -1,0 +1,36 @@
+<div class="demo-wrapper">
+  <button class="open-stepper" data-open-stepper>Open Stepper</button>
+
+  <button class="open-menu" data-open-menu>Open Menu</button>
+
+  <pre class="code"><code>
+    {
+      stepper: {
+        isOpen: <span data-code-stepper-isopen>true</span>,
+        currentStep: <span data-code-stepper-step>1</span>
+        maxSteps: <span data-code-stepper-max>5</span>
+      },
+      menu: {
+        isOpen: <span data-code-menu-isopen>true</span>,
+      },
+    }
+  </code></pre>
+
+
+  <div data-stepper class="stepper">
+    <button class="close-stepper" data-close-stepper>close</button>
+
+    <h1 data-stepper-title>Step 1</h1>
+
+    <div class="buttons">
+      <button data-prev-step>Prev Step</button>
+      <button data-next-step>Next Step</button>
+    </div>
+  </div>
+
+  <div data-menu class="menu">
+    <h5>Mobile menu</h5>
+    <button class="menu-open-stepper" data-open-stepper>Open Stepper</button>
+    <button data-close-menu>Close</button>
+  </div>
+</div>
