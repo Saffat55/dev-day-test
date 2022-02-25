@@ -1,0 +1,73 @@
+{% assign og_title = page_title %}
+{% assign og_url = canonical_url %}
+{% assign og_type = 'website' %}
+{% assign og_description = page_description | default: shop.description | default: shop.name %}
+
+{% if template contains 'index' %}
+
+  {% if page_image != blank %}
+    {% capture og_image_tags %}
+      <meta property="og:image" content="{{ page_image | img_url: '1200x630' }}">
+    {% endcapture %}
+  {% endif %}
+
+{% elsif template contains 'product' %}
+
+  {% assign og_title = product.title | strip_html %}
+  {% assign og_type = 'product' %}
+
+  {% if product.images.size >= 1 %}
+    {% capture og_image_tags %}
+      {% for image in product.images limit: 3 %}
+        <meta property="og:image" content="{{ image | img_url: '1024x1024' }}">
+      {% endfor %}
+    {% endcapture %}
+
+    {% capture twitter_image %}
+      <meta name="twitter:image" content="{{ product.featured_image | img_url: '1024x1024' }}">
+    {% endcapture %}
+  {% endif %}
+
+{% elsif template contains 'article' %}
+
+  {% assign og_title = article.title | strip_html %}
+  {% assign og_type = 'article' %}
+  {% assign og_description = article.excerpt_or_content | strip_html %}
+
+  {% if article.image %}
+    {% capture og_image_tags %}<meta property="og:image" content="{{ article.image | img_url: '1024x1024' }}">{% endcapture %}
+  {% endif %}
+
+{% else %}
+
+  {% if page_image != blank %}
+    {% capture og_image_tags %}
+      <meta property="og:image" content="{{ page_image | img_url: '1200x630' }}">
+    {% endcapture %}
+  {% endif %}
+
+{% endif %}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ og_url }}">
+<meta property="og:title" content="{{ og_title }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:description" content="{{ og_description }}">
+
+{% if template contains 'product' %}
+  <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+  <meta property="og:price:currency" content="{{ shop.currency }}">
+{% endif %}
+
+{% if og_image_tags %}
+  {{ og_image_tags }}
+{% endif %}
+
+{% if twitter_image %}
+  {{ twitter_image }}
+{% endif %}
+
+<meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ og_title }}">
+<meta name="twitter:description" content="{{ og_description }}">
